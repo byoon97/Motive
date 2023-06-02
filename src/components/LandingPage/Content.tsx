@@ -7,9 +7,7 @@ function Content() {
       <h3 className="flex items-center justify-center font-bold">
         Explore the world&apos;s largest car sharing marketplace
       </h3>
-      <div className="flex flex-row justify-center items-center">
-        <MakeCarousel />
-      </div>
+      <MakeCarousel />
     </div>
   );
 }
