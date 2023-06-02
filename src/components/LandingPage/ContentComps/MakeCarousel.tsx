@@ -49,6 +49,13 @@ const MakeCarousel: React.FC<MakeCarouselProps> = () => {
 
   return (
     <div className="relative p-3">
+      <style>
+        {`
+      .carousel-container {
+        overflow-x: hidden;
+      }
+    `}
+      </style>
       <div className="flex items-center justify-between mb-4">
         <h4 className="p-3 font-bold">Browse by Make</h4>
         <div className="flex flex-row">
@@ -68,7 +75,7 @@ const MakeCarousel: React.FC<MakeCarouselProps> = () => {
       </div>
       <div
         ref={carouselRef}
-        className="flex overflow-x-auto whitespace-nowrap"
+        className="flex overflow-x-auto whitespace-nowrap carousel-container scrollbar-hide"
         style={{ scrollSnapType: "x mandatory" }}
       >
         {items.map((make) => (

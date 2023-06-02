@@ -20,5 +20,18 @@ module.exports = {
       colors: {},
     },
   },
-  plugins: [],
+  plugins: [
+    // ...
+    function ({ addUtilities }) {
+      addUtilities({
+        ".hide-scroll-bar": {
+          scrollbarWidth: "none",
+          "-ms-overflow-style": "none",
+          "&::-webkit-scrollbar": {
+            display: "none",
+          },
+        },
+      });
+    },
+  ],
 };
