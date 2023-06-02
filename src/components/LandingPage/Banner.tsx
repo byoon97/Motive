@@ -10,7 +10,7 @@ import DatePicker from "./BannerComponents/DatePicker";
 
 function Banner() {
   return (
-    <div className="flex justify-between items-center bg-gray-200 border-b border-black py-10 lg:py-10 text-stone-950">
+    <div className="flex justify-between items-center bg-gray-200 py-10 lg:py-10 text-stone-950">
       <div className="px-10 space-y-5">
         <h1 className="text-6xl max-w-xl font-serif">
           <span className="underline decoration-blac decoration-w-4">
