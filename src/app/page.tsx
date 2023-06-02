@@ -6,13 +6,11 @@ import Content from "@/components/LandingPage/Content";
 
 export default function Home() {
   return (
-    <div className="">
-      <div className="max-w-7xl mx-auto h-screen bg-neutral-50">
-        <Header />
-        <Banner />
-        <Content />
-        {/* <Footer /> */}
-      </div>
+    <div className="max-w-7xl h-screen bg-neutral-50 overflow-x-hidden">
+      <Header />
+      <Banner />
+      <Content />
+      {/* <Footer /> */}
     </div>
   );
 }

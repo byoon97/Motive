@@ -43,7 +43,7 @@ export type Make = {
       {
         id: 8,
         image: '/make/tesla.jpeg',
-        name: 'Teska',
+        name: 'Tesla',
       },
       {
         id: 9,
