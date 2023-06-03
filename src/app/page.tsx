@@ -3,15 +3,17 @@ import Image from "next/image";
 import Banner from "@/components/LandingPage/Banner";
 import Footer from "@/components/LandingPage/Footer";
 import Content from "@/components/LandingPage/Content";
-import CaronNeutral from "@/components/LandingPage/ContentComps/CaronNeutral";
+import CarbonNeutral from "@/components/LandingPage/CarbonNeutral";
+import Experiences from "@/components/LandingPage/Experiences";
 
 export default function Home() {
   return (
-    <div className="h-screen bg-neutral-50 overflow-x-hidden">
+    <div className="h-screen bg-white overflow-x-hidden">
       <Header />
       <Banner />
       <Content />
-      <CaronNeutral />
+      <CarbonNeutral />
+      <Experiences />
       {/* <Footer /> */}
     </div>
   );
