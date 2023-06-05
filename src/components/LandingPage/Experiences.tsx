@@ -26,36 +26,37 @@ const Experiences: React.FC = () => {
   };
 
   return (
-    <div className="object-center text-black pb-8 bg-white lg:ml-60">
-      <div className="relative lg:w-4/5">
+    <div className="flex flex-col text-black ">
+      <div className="p-3 flex flex-col items-center justify-between">
+        <div className="flex flex-row items-center justify-between mb-4 sm:w-[80%] md:w-[65%] xl:w-[50%]">
+          <h4 className="p-3 font-bold">Browse by Destination</h4>
+          <div className="flex flex-row">
+            <button
+              className="hover:bg-gray-300 focus:outline-none"
+              onClick={scrollLeft}
+            >
+              <IoIosArrowBack size={24} />
+            </button>
+            <button
+              className="hover:bg-gray-300 focus:outline-none"
+              onClick={scrollRight}
+            >
+              <IoIosArrowForward size={24} />
+            </button>
+          </div>
+        </div>
         <div
           ref={carouselRef}
           className="flex overflow-x-hidden snap-x snap-mandatory"
           style={{ scrollSnapType: "x mandatory" }}
         >
-          <div className="lg:pr-80">
-            <button
-              className="absolute top-4 right-4 bg-white hover:opacity-100 transition-opacity duration-300 "
-              onClick={scrollRight}
-            >
-              <IoIosArrowForward size={24} />
-            </button>
-            <button
-              className="absolute top-4 right-14 bg-white hover:opacity-100 transition-opacity duration-300 "
-              onClick={scrollLeft}
-            >
-              <IoIosArrowBack size={24} />
-            </button>
-          </div>
           {exps.map((experience) => (
             <div
               key={experience.id}
               className="flex-none w-full snap-start sm:w-auto sm:flex-shrink-0 sm:mx-2"
               style={{ width: "100%" }}
             >
-              <div className="pt-16">
-                <ExperienceCard experience={experience} />
-              </div>
+              <ExperienceCard experience={experience} />
             </div>
           ))}
         </div>

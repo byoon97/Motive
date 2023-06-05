@@ -15,7 +15,7 @@ export default function Home() {
       <Content />
       <CarbonNeutral />
       <Experiences />
-      <Destination />
+      <Destination cities={[]} />
     </div>
   );
 }
