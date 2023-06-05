@@ -1,12 +1,14 @@
 "use client";
 import React, { useRef, RefObject, useState, useEffect } from "react";
-import items from "../../../../public/Cars";
 import MakeCard from "./MakeCard";
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
+import { Make } from "../../../../public/make/Cars";
 
-type MakeCarouselProps = {};
+type MakeCarouselProps = {
+  items: Make[];
+};
 
-const MakeCarousel: React.FC<MakeCarouselProps> = () => {
+const MakeCarousel: React.FC<MakeCarouselProps> = ({ items }) => {
   const [visibleCards, setVisibleCards] = useState(2); // Number of visible cards based on screen size
   const carouselRef: RefObject<HTMLDivElement> = useRef(null);
 
