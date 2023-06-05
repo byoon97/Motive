@@ -1,5 +1,6 @@
 import React from "react";
 import MakeCarousel from "./ContentComps/MakeCarousel";
+import items from "../../../public/make/Cars";
 
 function Content() {
   return (
@@ -7,7 +8,7 @@ function Content() {
       <h3 className="flex justify-center font-bold pt-8 text-center">
         Explore the world&apos;s largest car sharing marketplace
       </h3>
-      <MakeCarousel />
+      <MakeCarousel items={items} />
     </div>
   );
 }

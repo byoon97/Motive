@@ -1,5 +1,5 @@
 import React from "react";
-import { Make } from "../../../../public/Cars";
+import { Make } from "../../../../public/make/Cars";
 
 type MakeCardProps = {
   make: Make;

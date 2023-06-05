@@ -2,7 +2,7 @@
 import React, { useRef } from "react";
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 import ExperienceCard from "./ExperienceComps/ExperienceCard";
-import { exps } from "../../../public/Experiences";
+import { exps } from "../../../public/experiences/Experiences";
 
 const Experiences: React.FC = () => {
   const carouselRef = useRef<HTMLDivElement>(null);
@@ -26,13 +26,27 @@ const Experiences: React.FC = () => {
   };
 
   return (
-    <div className="object-center text-black pb-8 bg-white lg:ml-40">
+    <div className="object-center text-black pb-8 bg-white lg:ml-60">
       <div className="relative lg:w-4/5">
         <div
           ref={carouselRef}
           className="flex overflow-x-hidden snap-x snap-mandatory"
           style={{ scrollSnapType: "x mandatory" }}
         >
+          <div className="lg:pr-80">
+            <button
+              className="absolute top-4 right-4 bg-white hover:opacity-100 transition-opacity duration-300 "
+              onClick={scrollRight}
+            >
+              <IoIosArrowForward size={24} />
+            </button>
+            <button
+              className="absolute top-4 right-14 bg-white hover:opacity-100 transition-opacity duration-300 "
+              onClick={scrollLeft}
+            >
+              <IoIosArrowBack size={24} />
+            </button>
+          </div>
           {exps.map((experience) => (
             <div
               key={experience.id}
@@ -44,20 +58,6 @@ const Experiences: React.FC = () => {
               </div>
             </div>
           ))}
-        </div>
-        <div className="pr-2 lg:pr-80">
-          <button
-            className="absolute top-4 right-4 bg-white hover:opacity-100 transition-opacity duration-300 pr-2 "
-            onClick={scrollRight}
-          >
-            <IoIosArrowForward size={24} />
-          </button>
-          <button
-            className="absolute top-4 right-14 bg-white hover:opacity-100 transition-opacity duration-300 pr-2 "
-            onClick={scrollLeft}
-          >
-            <IoIosArrowBack size={24} />
-          </button>
         </div>
       </div>
     </div>

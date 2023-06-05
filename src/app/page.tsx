@@ -5,6 +5,7 @@ import Footer from "@/components/LandingPage/Footer";
 import Content from "@/components/LandingPage/Content";
 import CarbonNeutral from "@/components/LandingPage/CarbonNeutral";
 import Experiences from "@/components/LandingPage/Experiences";
+import Destination from "@/components/LandingPage/Destination";
 
 export default function Home() {
   return (
@@ -14,7 +15,7 @@ export default function Home() {
       <Content />
       <CarbonNeutral />
       <Experiences />
-      {/* <Footer /> */}
+      <Destination />
     </div>
   );
 }

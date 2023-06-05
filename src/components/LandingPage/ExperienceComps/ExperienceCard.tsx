@@ -1,5 +1,5 @@
 import React from "react";
-import { Experience } from "../../../../public/Experiences";
+import { Experience } from "../../../../public/experiences/Experiences";
 
 type CardProps = {
   experience: Experience;
@@ -20,7 +20,7 @@ const ExperienceCard: React.FC<CardProps> = ({ experience }) => {
             <span className="text-indigo-600">{experience.title2}</span>
           </h3>
           <p className="text-gray-700 mb-4">{experience.body}</p>
-          <div className="flex sm:items-center sm:justify-center">
+          <div className="flex sm:pt-6 sm:items-center sm:justify-center">
             <button className="bg-indigo-600 text-white font-semibold py-3 px-5">
               Browse Cars
             </button>
