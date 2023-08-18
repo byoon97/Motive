@@ -50,7 +50,7 @@ const MakeCarousel: React.FC<MakeCarouselProps> = ({ items }) => {
   }, []);
 
   return (
-    <div className="relative p-3">
+    <div className="relative p-3 pt-3">
       <style>
         {`
       .carousel-container {
