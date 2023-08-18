@@ -8,7 +8,7 @@ type CardProps = {
 const ExperienceCard: React.FC<CardProps> = ({ experience }) => {
   return (
     <div className="w-full max-w-screen-lg mx-auto object-center text-black sm:pb-8 lg:px-8 sm:px-8">
-      <div className="flex lg:flex-row flex-col items-center justify-center">
+      <div className="flex lg:flex-row sm:flex-col md:flex-row items-center justify-center">
         <img
           src={experience.image}
           alt="Card Image"

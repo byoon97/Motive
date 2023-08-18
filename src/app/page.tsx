@@ -1,11 +1,11 @@
 import Header from "@/components/LandingPage/Header";
-import Image from "next/image";
 import Banner from "@/components/LandingPage/Banner";
 import Footer from "@/components/LandingPage/Footer";
 import Content from "@/components/LandingPage/Content";
 import CarbonNeutral from "@/components/LandingPage/CarbonNeutral";
 import Experiences from "@/components/LandingPage/Experiences";
 import Destination from "@/components/LandingPage/Destination";
+import FQA from "@/components/LandingPage/FQA";
 
 export default function Home() {
   return (
@@ -16,6 +16,8 @@ export default function Home() {
       <CarbonNeutral />
       <Experiences />
       <Destination cities={[]} />
+      <FQA />
+      <Footer />
     </div>
   );
 }

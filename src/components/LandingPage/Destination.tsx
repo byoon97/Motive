@@ -50,7 +50,7 @@ const Destination: React.FC<CityCarouselProps> = () => {
   }, []);
 
   return (
-    <div className="h-full flex flex-col text-black p-3 md:px-[75px] lg:px-[15%] xl:px-[25%]">
+    <div className="flex flex-col text-black p-3 sm:mb-8 lg:px-[15%] xl:px-[25%]">
       <div className="relative p-3">
         <style>
           {`
@@ -60,7 +60,12 @@ const Destination: React.FC<CityCarouselProps> = () => {
     `}
         </style>
         <div className="flex items-center justify-between mb-4">
-          <h4 className="p-3 font-bold">Browse by Destination</h4>
+          <div className="relative">
+            <div className="absolute bottom-0 left-0 w-full mx-2 h-1/2 bg-violet-200 z-10"></div>
+            <h3 className="lg:text-3xl m:text-lg sm:text-small font-bold relative z-20">
+              Browse by Destination
+            </h3>
+          </div>
           <div className="flex flex-row">
             <button
               onClick={scrollLeft}
