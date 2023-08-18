@@ -7,22 +7,18 @@ import { exps } from "../../../public/experiences/Experiences";
 const Experiences: React.FC = () => {
   const carouselRef = useRef<HTMLDivElement>(null);
 
-  const scrollRight = () => {
-    if (carouselRef.current) {
-      carouselRef.current.scrollBy({
-        left: window.innerWidth,
-        behavior: "smooth",
-      });
-    }
+  const scrollLeft = (): void => {
+    carouselRef.current?.scrollBy({
+      left: -500, // Adjust the value based on your card width
+      behavior: "smooth",
+    });
   };
 
-  const scrollLeft = () => {
-    if (carouselRef.current) {
-      carouselRef.current.scrollBy({
-        left: -window.innerWidth,
-        behavior: "smooth",
-      });
-    }
+  const scrollRight = (): void => {
+    carouselRef.current?.scrollBy({
+      left: 500, // Adjust the value based on your card width
+      behavior: "smooth",
+    });
   };
 
   return (
