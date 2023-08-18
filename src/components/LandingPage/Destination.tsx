@@ -31,7 +31,7 @@ const Destination: React.FC<CityCarouselProps> = () => {
     let newVisibleCards = 5; // Default to largest screen size
 
     if (screenWidth < 640) {
-      newVisibleCards = 2; // Small screen size
+      newVisibleCards = 2.5; // Small screen size
     } else if (screenWidth < 768) {
       newVisibleCards = 3; // Medium screen size
     } else if (screenWidth < 1024) {
@@ -50,7 +50,7 @@ const Destination: React.FC<CityCarouselProps> = () => {
   }, []);
 
   return (
-    <div className="flex flex-col text-black p-3 sm:mb-8 lg:px-[15%] xl:px-[25%]">
+    <div className="flex flex-col text-black p-3 sm:mb-4 lg:px-[15%] xl:px-[25%]">
       <div className="relative p-3">
         <style>
           {`
@@ -83,17 +83,17 @@ const Destination: React.FC<CityCarouselProps> = () => {
         </div>
         <div
           ref={carouselRef}
-          className="flex overflow-x-auto whitespace-nowrap carousel-container scrollbar-hide"
+          className="flex overflow-x-auto whitespace-nowrap carousel-container scrollbar-hide h-[210px]"
           style={{ scrollSnapType: "x mandatory" }}
         >
           {citiesArr.map((city) => (
             <div
               key={city.id}
               className={`flex-shrink-0 mx-1 ${
-                visibleCards === 2
-                  ? "w-1/2 sm:w-1/2 md:w-1/2 lg:w-1/2 xl:w-1/2"
+                visibleCards === 2.5
+                  ? "w-1/3 sm:w-1/3 md:w-1/2 lg:w-1/2 xl:w-1/2"
                   : visibleCards === 3
-                  ? "w-1/3 sm:w-1/3 md:w-1/3 lg:w-1/3 xl:w-1/3"
+                  ? "w-1/3 sm:w-1/3 md:w-1/2 lg:w-1/3 xl:w-1/3"
                   : visibleCards === 4
                   ? "w-1/4 sm:w-1/4 md:w-1/4 lg:w-1/4 xl:w-1/4"
                   : "w-1/5 sm:w-1/5 md:w-1/5 lg:w-1/5 xl:w-1/5"
@@ -122,3 +122,5 @@ const Destination: React.FC<CityCarouselProps> = () => {
 };
 
 export default Destination;
+
+
