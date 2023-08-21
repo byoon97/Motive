@@ -5,7 +5,7 @@ import Content from "@/components/LandingPage/Content";
 import CarbonNeutral from "@/components/LandingPage/CarbonNeutral";
 import Experiences from "@/components/LandingPage/Experiences";
 import Destination from "@/components/LandingPage/Destination";
-import FQA from "@/components/LandingPage/FQA";
+import FAQ from "@/components/LandingPage/FAQ";
 
 export default function Home() {
   return (
@@ -16,7 +16,7 @@ export default function Home() {
       <CarbonNeutral />
       <Experiences />
       <Destination cities={[]} />
-      <FQA />
+      <FAQ />
       <Footer />
     </div>
   );
