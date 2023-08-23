@@ -13,21 +13,18 @@ const DatePicker: React.FC<DatePickerProps> = ({ date }) => {
   };
 
   return (
-    <div className="flex flex-col p-2 border-b border-black">
-      <div className="text-xs">From</div>
-      <div className="flex flex-row justify-start items-center">
-        <div className="bg-gray-50 cursor-pointer">
-          <div className="w-48">
-            <input
-              type="date"
-              className="rounded px-2 py-1 bg-gray-50"
-              value={selectedDate}
-              onChange={handleDateChange}
-            />
-          </div>
+    <div className="flex flex-row justify-start items-center sm:border-b md:border-none">
+      <div className="bg-gray-50 cursor-pointer">
+        <div className="w-full">
+          <input
+            type="date"
+            className="rounded bg-gray-50 h-[30px] text-xs"
+            value={selectedDate}
+            onChange={handleDateChange}
+          />
         </div>
-        <TimeSelector />
       </div>
+      <TimeSelector />
     </div>
   );
 };

@@ -9,9 +9,10 @@ module.exports = {
   theme: {
     screens: {
       sm: "380px",
-      md: "668px",
-      lg: "980px",
-      xl: "1440px",
+      md: "768px",
+      lg: "992px",
+      xl: "1200px",
+      "2xl": "1500px",
     },
     extend: {
       fontFamily: {
