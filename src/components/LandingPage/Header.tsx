@@ -1,5 +1,6 @@
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { RxHamburgerMenu } from "react-icons/rx";
+import { CgProfile } from "react-icons/cg";
 
 function Header() {
   return (
@@ -12,25 +13,15 @@ function Header() {
             alt="Motive Logo"
           />
         </Link>
-        <div className="hidden md:inline-flex items-center space-x-5 text-stone-950">
-          <h3>About</h3>
-          <h3>Contact</h3>
-        </div>
       </div>
       <div className="flex items-center space-x-5 text-stone-950">
-        <h3>Sign In</h3>
-        <h3>Sign Out</h3>
-        {/* {!isLoggedIn ? (
-          <Link href="/login">
-            
-          </Link>
-        ) : (
-          
-        )} */}
-
-        {/* <h3 className="border px-4 py-1 rounded-full border-slate-400"> */}
-        {/* {!isLoggedIn ? "Get Started" : user?.email} */}
-        {/* </h3> */}
+        <div className="border-[1px] border-black text-xs font-bold px-2 py-1 hover:bg-gray-200 cursor-pointer">
+          Become a host
+        </div>
+        <div className="flex flex-row items-center justify-evenly w-16  h-8 px-2 rounded-md py-1 hover:bg-gray-200 cursor-pointer">
+          <RxHamburgerMenu className="text-xl" />
+          <CgProfile className="text-xl" />
+        </div>
       </div>
     </header>
   );
