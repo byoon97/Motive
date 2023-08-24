@@ -16,7 +16,7 @@ module.exports = {
     },
     extend: {
       fontFamily: {
-        public: ["'Public Sans', sans-serif"],
+        public: ["Raleway, sans-serif"],
       },
       colors: {},
     },
