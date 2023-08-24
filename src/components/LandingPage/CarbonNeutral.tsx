@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import React from "react";
 
 const CarbonNeutral = () => {
@@ -9,7 +10,7 @@ const CarbonNeutral = () => {
         className="w-full md:w-auto h-auto rounded-lg"
       />
       <div className="md:ml-4 lg:w-1/4 flex flex-col">
-        <h3 className="text-xl font-semibold my-2 text-sm text-black">
+        <h3 className="text-xl font-semibold my-2 text-black">
           Motive is Carbon Neutral Certified
         </h3>
         <p className="text-gray-700 text-sm pb-6">

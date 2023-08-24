@@ -14,10 +14,10 @@ const DatePicker: React.FC<DatePickerProps> = ({ date }) => {
 
   return (
     <div className="flex flex-row justify-start items-center sm:border-b md:border-none">
-      <div className="bg-gray-50 cursor-pointer">
+      <div className="sm:bg-gray-50 md:bg-transparent cursor-pointer">
         <input
           type="date"
-          className="rounded bg-gray-50 h-[30px] text-xs"
+          className="rounded sm:bg-gray-50 md:bg-transparent h-[30px] text-xs"
           value={selectedDate}
           onChange={handleDateChange}
         />

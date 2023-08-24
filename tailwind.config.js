@@ -16,7 +16,7 @@ module.exports = {
     },
     extend: {
       fontFamily: {
-        public: ["Raleway, sans-serif"],
+        custom: ["Insignia", "sans-serif"], // Use the font name you want
       },
       colors: {},
     },
