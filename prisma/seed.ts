@@ -1,4 +1,4 @@
-import { PrismaClient } from '@prisma/client';
+import { Prisma, PrismaClient } from '@prisma/client';
 import { users } from './seedData/users';
 import { cars } from './seedData/cars';
 
@@ -10,71 +10,67 @@ async function clearSeedData() {
   await prisma.user.deleteMany({});
 }
 
+
 async function seed() {
   await clearSeedData();
   try {
     // Create users and trips
+    const createdCars: { id: number; createdAt: Date; updatedAt: Date; make: string; totalTrips: number; address: string; model: string; rating: number; image: Prisma.JsonValue; ownerId: number; }[] = []; // Initialize the array here
+
     for (const userIndex in users) {
       const user = users[userIndex];
-
       const createdUser = await prisma.user.create({
         data: {
           email: user.email,
           firstName: user.firstName,
           lastName: user.lastName,
           host: user.host,
-          cars: {
-            create: user.cars?.map(car => ({
+        },
+      });
+
+      for (const car of user.cars) {
+        // Check if the car has been created already
+        const existingCar = createdCars.find(c => c.model === car.model && c.address === car.address);
+
+        if (existingCar) {
+          for (const trip of car.trips) {
+            const createdTrip = await prisma.trip.create({
+              data: {
+                startDate: new Date(trip.startDate),
+                endDate: new Date(trip.endDate),
+                review: trip.review,
+                rating: trip.rating,
+                user: { connect: { id: createdUser.id } },
+                car: { connect: { id: existingCar.id } },
+              },
+            });
+          }
+        } else {
+          const createdCar = await prisma.car.create({
+            data: {
               make: car.make,
               model: car.model,
               image: [],
               totalTrips: car.totalTrips,
               address: car.address,
               rating: car.rating,
-            })),
-          },
-        },
-      });
-
-      const createdCars = [];
-      for (const carIndex in cars) {
-        const car = cars[carIndex];
-        const createdCar = await prisma.car.create({
-          data: {
-            make: car.make,
-            model: car.model,
-            image: [],
-            totalTrips: car.totalTrips,
-            address: car.address,
-            rating: car.rating,
-            user: { connect: { id: createdUser.id } }, // Connect the user
-          },
-        });
-        createdCars.push(createdCar);
-      }
-
-      const tripsForUser = user.trips;
-      if (tripsForUser) {
-        for (const tripIndex in tripsForUser) {
-          const trip = tripsForUser[tripIndex];
-
-          const car = createdCars[trip.carId];
-          if (!car) {
-            console.error('Car not found for trip', trip);
-            continue; // Skip this trip if car is not found
-          }
-
-          const createdTrip = await prisma.trip.create({
-            data: {
-              startDate: new Date(trip.startDate),
-              endDate: new Date(trip.endDate),
-              review: trip.review,
-              rating: trip.rating,
-              user: { connect: { id: createdUser.id } }, // Connect the user
-              car: { connect: { id: car.id } }, // Connect the car
+              owner: { connect: { id: createdUser.id } },
             },
           });
-          console.log('created trip', createdTrip);
+          createdCars.push(createdCar);
+
+          for (const trip of car.trips) {
+            const createdTrip = await prisma.trip.create({
+              data: {
+                startDate: new Date(trip.startDate),
+                endDate: new Date(trip.endDate),
+                review: trip.review,
+                rating: trip.rating,
+                user: { connect: { id: createdUser.id } },
+                car: { connect: { id: createdCar.id } },
+              },
+            });
+          }
         }
       }
     }
