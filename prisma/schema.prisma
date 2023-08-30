@@ -1,6 +1,3 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
 generator client {
   provider = "prisma-client-js"
 }
@@ -15,26 +12,26 @@ model User {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
   email     String   @unique
-  firstName String  
-  lastName  String 
+  firstName String
+  lastName  String
   host      Boolean  @default(false)
   cars      Car[]
-  trips     Trip[]  
+  trips     Trip[]
 }
 
 model Car {
-  id        Int      @id @default(autoincrement())
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-  make      String
-  model     String
-  totalTrips Int @default(0)
-  address   String
-  image     Json
-  owner     User @relation(fields: [ownerId], references: [id])
-  ownerId   Int
-  rating    Int
-  trips     Trip[]
+  id         Int      @id @default(autoincrement())
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+  make       String
+  totalTrips Int      @default(0)
+  address    String
+  model      String
+  rating     Int
+  image      Json
+  ownerId    Int
+  owner      User     @relation(fields: [ownerId], references: [id])
+  trips      Trip[]
 }
 
 model Trip {
@@ -43,12 +40,12 @@ model Trip {
   updatedAt DateTime @updatedAt
   startDate DateTime
   endDate   DateTime
-  review    String
-  rating    Int
-  user      User  @relation(fields: [userId], references: [id])
   userId    Int
-  car       Car @relation(fields: [carId], references: [id])
   carId     Int
+  rating    Int
+  review    String
+  car       Car      @relation(fields: [carId], references: [id])
+  user      User     @relation(fields: [userId], references: [id])
 }
 
 enum Role {

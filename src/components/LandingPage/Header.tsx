@@ -48,12 +48,20 @@ function Header() {
                 aria-orientation="vertical"
                 aria-labelledby="options-menu"
               >
-                <p className="cursor-pointer font-insignia text-sm pl-4 py-1.5 hover:bg-gray-200 m-1 rounded-lg">
-                  Log In
-                </p>
-                <p className="cursor-pointer font-insignia text-sm pl-4 py-1.5 hover:bg-gray-200 m-1 rounded-lg">
-                  Sign Up
-                </p>
+                <Link href="/login">
+                  {" "}
+                  <p className="cursor-pointer font-insignia text-sm pl-4 py-1.5 hover:bg-gray-200 m-1 rounded-lg">
+                    Log In
+                  </p>
+                </Link>
+
+                <Link href="reigster">
+                  {" "}
+                  <p className="cursor-pointer font-insignia text-sm pl-4 py-1.5 hover:bg-gray-200 m-1 rounded-lg">
+                    Sign Up
+                  </p>
+                </Link>
+
                 <div className="flex flex-row items-center pl-4 py-1.5 hover:bg-gray-200 m-1 rounded-lg">
                   <BsCarFront className="" />
                   <p className="cursor-pointer font-insignia text-sm pl-2">
