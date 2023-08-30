@@ -160,7 +160,8 @@ export const trips = [
       endDate: '2023-08-29',
       review: 'The car was clean and comfortable.',
       rating: 3,
-      carId: 8
+      carId: 8,
+      userId: 8
     },
     {
       id: 18,
@@ -186,7 +187,8 @@ export const trips = [
       endDate: '2023-08-29',
       review: 'The car was clean and comfortable.',
       rating: 4,
-      carId: 9
+      carId: 9,
+      userId: 11
     },
     {
       id: 21,

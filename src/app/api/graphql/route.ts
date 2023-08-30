@@ -1,4 +1,4 @@
-import { resolvers } from '../../../../graphql/resolvers'
+import { resolvers } from './../../../../graphql/resolvers';
 import { schema } from '../../../../graphql/schema'
 import { createSchema, createYoga } from 'graphql-yoga'
 import type { NextApiRequest, NextApiResponse } from 'next'

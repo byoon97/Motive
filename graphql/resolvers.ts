@@ -1,7 +1,4 @@
 import { PrismaClient } from '@prisma/client';
-import { makeExecutableSchema } from 'graphql-tools';
-import { GraphQLSchema } from 'graphql';
-import { schema } from './schema';
 import { GraphQLScalarType, Kind } from 'graphql';
 
 const prisma = new PrismaClient();
