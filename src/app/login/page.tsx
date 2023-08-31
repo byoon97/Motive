@@ -1,8 +1,8 @@
+/* eslint-disable @next/next/no-img-element */
 "use client";
 import Link from "next/link";
 import * as React from "react";
 import { useRef } from "react";
-import Router, { useRouter } from "next/router";
 
 export default function LogIn() {
   const emailRef = useRef<HTMLInputElement | null>(null);

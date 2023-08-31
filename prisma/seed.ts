@@ -42,7 +42,7 @@ async function seed() {
               data: {
                 make: car.make,
                 model: car.model,
-                image: [],
+                image: car.image,
                 totalTrips: car.totalTrips,
                 address: car.address,
                 rating: car.rating,

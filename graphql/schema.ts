@@ -1,8 +1,7 @@
 import { PrismaClient } from '@prisma/client';
 import { createSchema } from 'graphql-yoga';
 import { GraphQLScalarType, Kind } from 'graphql';
-
-const prisma = new PrismaClient();
+import prisma from '../lib/prisma';
 
 
 export const dateScalar = new GraphQLScalarType({
@@ -83,10 +82,14 @@ export const schema = createSchema({
         });
       },
       getCars: async () => {
-        return await prisma.car.findMany();
+        return await prisma.car.findMany({
+          include: { trips: true, owner: true}
+        });
       },
       getTrips: async () => {
-        return await prisma.trip.findMany();
+        return await prisma.trip.findMany({
+          include: { car: true, user: true }
+        });
       },
       getAllUsers: async () => {
         return await prisma.user.findMany({
