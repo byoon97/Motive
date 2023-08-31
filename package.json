@@ -9,6 +9,8 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@apollo/client": "^3.8.0-rc.2",
+    "@apollo/experimental-nextjs-app-support": "^0.4.2",
     "@as-integrations/next": "^2.0.2",
     "@pothos/core": "^3.33.1",
     "@pothos/plugin-prisma": "^3.58.0",
