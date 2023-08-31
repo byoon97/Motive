@@ -1,8 +1,8 @@
+/* eslint-disable @next/next/no-img-element */
 "use client";
 import Link from "next/link";
 import React from "react";
 import { useRef } from "react";
-import { useRouter } from "next/router";
 
 function Register() {
   const emailRef = useRef<HTMLInputElement | null>(null);
