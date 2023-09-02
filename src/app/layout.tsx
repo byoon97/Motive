@@ -1,4 +1,5 @@
 import { ApolloWrapper } from "../../lib/apollo-wrapper";
+import ProvidersWrapper from "./ProviderWrapper";
 import "./globals.css";
 import { Inter } from "next/font/google";
 
@@ -13,7 +14,9 @@ export default function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         {" "}
-        <ApolloWrapper>{children}</ApolloWrapper>
+        <ApolloWrapper>
+          <ProvidersWrapper>{children}</ProvidersWrapper>
+        </ApolloWrapper>
       </body>
     </html>
   );
