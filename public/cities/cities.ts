@@ -41,7 +41,7 @@ export const citiesArr: CityProps[] = [
         cityName: 'Toronto',   
     }, 
     {
-        id: 6,
+        id: 7,
         image: '/cities/nyc.png',
         cityName: 'New York City',   
     }, 

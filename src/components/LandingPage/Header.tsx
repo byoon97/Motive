@@ -8,9 +8,12 @@ import { BsCarFront } from "react-icons/Bs";
 import { AiOutlineHeart } from "react-icons/ai";
 import { RiFilePaperLine } from "react-icons/ri";
 import { GiRoad } from "react-icons/Gi";
+import { useSession, signOut } from "next-auth/react";
 
 function Header() {
   const [isOpen, setIsOpen] = useState(false);
+  //get session
+  const { data: session } = useSession();
 
   const toggleDropdown = () => {
     setIsOpen(!isOpen);
@@ -48,19 +51,30 @@ function Header() {
                 aria-orientation="vertical"
                 aria-labelledby="options-menu"
               >
-                <Link href="/login">
-                  {" "}
-                  <p className="cursor-pointer font-insignia text-sm pl-4 py-1.5 hover:bg-gray-200 m-1 rounded-lg">
-                    Log In
+                {session ? (
+                  <p
+                    onClick={() => signOut()}
+                    className="cursor-pointer font-insignia text-sm pl-4 py-1.5 hover:bg-gray-200 m-1 rounded-lg"
+                  >
+                    Log Out
                   </p>
-                </Link>
+                ) : (
+                  <div>
+                    <Link href="/login">
+                      {" "}
+                      <p className="cursor-pointer font-insignia text-sm pl-4 py-1.5 hover:bg-gray-200 m-1 rounded-lg">
+                        Log In
+                      </p>
+                    </Link>
 
-                <Link href="reigster">
-                  {" "}
-                  <p className="cursor-pointer font-insignia text-sm pl-4 py-1.5 hover:bg-gray-200 m-1 rounded-lg">
-                    Sign Up
-                  </p>
-                </Link>
+                    <Link href="reigster">
+                      {" "}
+                      <p className="cursor-pointer font-insignia text-sm pl-4 py-1.5 hover:bg-gray-200 m-1 rounded-lg">
+                        Sign Up
+                      </p>
+                    </Link>
+                  </div>
+                )}
 
                 <div className="flex flex-row items-center pl-4 py-1.5 hover:bg-gray-200 m-1 rounded-lg">
                   <BsCarFront className="" />

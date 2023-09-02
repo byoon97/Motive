@@ -1,4 +1,5 @@
 "use client";
+//https://www.apollographql.com/blog/announcement/frontend/using-apollo-client-with-next-js-13-releasing-an-official-library-to-support-the-app-router/
 import { ApolloLink, HttpLink, SuspenseCache } from "@apollo/client";
 import {
   NextSSRApolloClient,

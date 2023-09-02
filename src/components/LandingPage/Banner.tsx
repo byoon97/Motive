@@ -3,8 +3,11 @@ import React from "react";
 import { currentDateWithoutTime } from "@/functions/date";
 import DatePicker from "./BannerComponents/DatePicker";
 import { BsSearch, BsCarFront } from "react-icons/Bs";
+import { useSession } from "next-auth/react";
 
 function Banner() {
+  const { data: session } = useSession();
+  console.log(session);
   return (
     <div className="flex justify-center h-[400px] bg-[url('../../public/headerimg/442.jpeg')] md:bg-[url('../../public/headerimg/768.jpeg')] lg:bg-[url('../../public/headerimg/992.jpeg')] xl:bg-[url('../../public/headerimg/1200.jpeg')] 2xl:bg-[url('../../public/headerimg/1500.jpeg')] bg-cover bg-center bg-no-repeat text-stone-950">
       <div className="flex mt-4 bg-gray-50 md:flex-row md:w-[585px] md:rounded-[95px] md:h-[50px] sm:h-[225px] sm:flex-col sm:rounded-[10px] sm:w-[400px] shadow-md">

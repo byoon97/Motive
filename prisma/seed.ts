@@ -1,6 +1,7 @@
 import { Car, Prisma, PrismaClient, User, Trip } from '@prisma/client';
 import { users } from './seedData/users';
 import { cars } from './seedData/cars';
+import { hash } from 'bcrypt';
 
 type TripWithOwner = Prisma.TripGetPayload<{
   include: { user: true }
@@ -28,6 +29,7 @@ async function seed() {
           email: user.email,
           firstName: user.firstName,
           lastName: user.lastName,
+          password: await hash(user.password, 12),
           host: user.host,
         },
       });
