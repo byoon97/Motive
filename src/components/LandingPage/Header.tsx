@@ -67,7 +67,7 @@ function Header() {
                       </p>
                     </Link>
 
-                    <Link href="reigster">
+                    <Link href="register">
                       {" "}
                       <p className="cursor-pointer font-insignia text-sm pl-4 py-1.5 hover:bg-gray-200 m-1 rounded-lg">
                         Sign Up
