@@ -1,4 +1,5 @@
 "use client";
+//https://www.apollographql.com/docs/react/data/error-handling/
 //https://www.apollographql.com/blog/announcement/frontend/using-apollo-client-with-next-js-13-releasing-an-official-library-to-support-the-app-router/
 import { ApolloLink, HttpLink, SuspenseCache } from "@apollo/client";
 import {
@@ -7,11 +8,26 @@ import {
   NextSSRInMemoryCache,
   SSRMultipartLink,
 } from "@apollo/experimental-nextjs-app-support/ssr";
+import { onError } from "@apollo/client/link/error";
+
+const errorLink = onError(({ graphQLErrors, networkError }) => {
+  if (graphQLErrors)
+    graphQLErrors.forEach(async ({ message, locations, path }) =>
+      console.log(
+        `[GraphQL error]: Message: ${message}, Location: ${await JSON.stringify(
+          locations
+        )}, Path: ${path}`
+      )
+    );
+  if (networkError) console.log(`[Network error]: ${networkError}`);
+});
 
 function makeClient() {
   const httpLink = new HttpLink({
-    uri: "https://main--time-pav6zq.apollographos.net/graphql",
+    uri: "http://localhost:3000/api/graphql",
   });
+
+  const link = ApolloLink.from([errorLink, httpLink]);
 
   return new NextSSRApolloClient({
     cache: new NextSSRInMemoryCache(),
@@ -22,13 +38,10 @@ function makeClient() {
               stripDefer: true,
             }),
             httpLink,
+            errorLink,
           ])
-        : httpLink,
+        : link,
   });
-}
-
-function makeSuspenseCache() {
-  return new SuspenseCache();
 }
 
 export function ApolloWrapper({ children }: React.PropsWithChildren) {

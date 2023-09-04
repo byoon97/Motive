@@ -1,4 +1,5 @@
 import { builder } from "../builder";
+import { prisma } from "../../lib/prisma";
 
 builder.prismaObject('Trip', {
   fields: (t) => ({
