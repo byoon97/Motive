@@ -1,3 +1,4 @@
+import { prisma } from "../../lib/prisma";
 import { builder } from "../builder";
 
 builder.prismaObject('Car', {
@@ -13,7 +14,7 @@ builder.prismaObject('Car', {
   })
 })
 
-builder.queryField("cars", (t) =>
+builder.queryField("getCars", (t) =>
 // 2. 
   t.prismaField({
     // 3. 

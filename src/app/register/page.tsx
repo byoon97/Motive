@@ -1,20 +1,160 @@
+/* eslint-disable react-hooks/rules-of-hooks */
 /* eslint-disable @next/next/no-img-element */
 "use client";
 import Link from "next/link";
-import React from "react";
-import { useRef } from "react";
+import React, { useEffect } from "react";
 import { FcGoogle } from "react-icons/fc";
 import { AiFillGithub, AiOutlineApple } from "react-icons/ai";
 import { signIn } from "next-auth/react";
+import { useRouter } from "next/navigation";
+import { gql, useMutation, useQuery } from "@apollo/client";
+import toast, { Toaster } from "react-hot-toast";
+import { type SubmitHandler, useForm } from "react-hook-form";
+import { genSaltSync, hashSync } from "bcrypt-ts";
+import formData from "form-data";
+import Mailgun from "mailgun.js";
 
-function Register() {
-  const emailRef = useRef<HTMLInputElement | null>(null);
-  const passwordRef = useRef<HTMLInputElement | null>(null);
-  const confirmPasswordRef = useRef<HTMLInputElement | null>(null);
-  const usernameRef = useRef<HTMLInputElement | null>(null);
+type FormValues = {
+  email: string;
+  firstName: string;
+  lastName: string;
+  password: string;
+  confirmPassword: string;
+};
+
+const CreateUserMutation = gql`
+  mutation createUser(
+    $email: String!
+    $firstName: String!
+    $lastName: String!
+    $password: String!
+    $host: Boolean!
+    $verified: Boolean!
+  ) {
+    createUser(
+      email: $email
+      firstName: $firstName
+      lastName: $lastName
+      password: $password
+      host: $host
+      verified: $verified
+    ) {
+      id
+      email
+      firstName
+      lastName
+      password
+      host
+      verified
+    }
+  }
+`;
+
+const CreateVerificationTokenMutation = gql`
+  mutation createVToken($token: String!, $user: Int!) {
+    createVToken(token: $token, user: $user) {
+      token
+      user {
+        id
+        email
+        firstName
+        lastName
+      }
+    }
+  }
+`;
+
+const API_KEY = process.env.NEXT_PUBLIC_MAILGUN_API_KEY || "";
+const DOMAIN = process.env.NEXT_PUBLIC_DOMAIN || "";
+
+export default function Register() {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    reset,
+  } = useForm<FormValues>();
+
+  const router = useRouter();
+
+  const [createUser, { loading, error }] = useMutation(CreateUserMutation, {
+    onCompleted: () => reset(),
+  });
+
+  const [createVToken, { loading: tokenLoad, error: tokenError }] = useMutation(
+    CreateVerificationTokenMutation
+  );
+
+  const onSubmit: SubmitHandler<FormValues> = async (data) => {
+    const { email, firstName, lastName, password, confirmPassword } = data;
+    const host = false;
+    const verified = false;
+    const salt = genSaltSync(12);
+    const hashedPassword = hashSync(password, salt);
+    const variables = {
+      email,
+      password: hashedPassword,
+      firstName,
+      lastName,
+      host,
+      verified,
+    };
+
+    // veryify passwords
+    if (password === confirmPassword) {
+      // attempt to create user
+      try {
+        const newUser = await toast.promise(createUser({ variables }), {
+          loading: "Creating your Account...",
+          success: (result) => {
+            return "Account successfully created! 🎉";
+          },
+          error: (error) => {
+            return `Something went wrong 😥 Please try again - ${error.message}`;
+          },
+        });
+
+        let id = Number(newUser?.data?.createUser?.id);
+
+        // attempt to send verification email
+        const randomToken = `${(
+          crypto.randomUUID() + crypto.randomUUID()
+        ).replace(/-/g, "")}`;
+
+        const vToken = await createVToken({
+          variables: {
+            token: randomToken,
+            user: id,
+          },
+        });
+
+        console.log(API_KEY, DOMAIN);
+        const mailgun = new Mailgun(formData);
+        const client = mailgun.client({ username: "api", key: API_KEY });
+        const messageData = {
+          from: `Verification Email <Brandon@${DOMAIN}>`,
+          to: newUser?.data?.createUser?.email,
+          subject: "Please Activate Your Account with Motive",
+          text: `Hello ${firstName}, please activate your account with us at Motive by clicking this link http://localhost:3000/activate/${randomToken}`,
+          attachment: [{ filename: "/Motive.png" }],
+        };
+
+        let msg = await client.messages.create(DOMAIN, messageData);
+        console.log(msg);
+
+        // after registration is complete and email is sent, reroute to home page
+        router.push("/");
+      } catch (error) {
+        console.error(error);
+      }
+    } else {
+      toast.error("Passwords do not match!");
+    }
+  };
 
   return (
     <div className="flex items-center justify-center h-screen flex-col bg-white my-8">
+      <Toaster />
       <div className="text-center">
         <div className="flex items-center justify-center">
           <Link href="/">
@@ -37,34 +177,40 @@ function Register() {
         </span>
       </div>
       <div className="flex justify-center my-2 mx-4 md:mx-0">
-        <form className="w-full max-w-xl bg-white rounded-lg shadow-md p-6">
+        {/* FORM BEGINGS HERE */}
+        <form
+          onSubmit={handleSubmit(onSubmit)}
+          className="w-full max-w-xl bg-white rounded-lg shadow-md p-6"
+        >
           <div className="flex flex-wrap -mx-3 mb-6">
             <div className="w-full md:w-full px-3 mb-6">
-              <label
-                className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                htmlFor="Password"
-              >
+              <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
                 Email address
               </label>
               <input
                 className="appearance-none block w-full bg-white text-gray-900 font-medium border border-gray-400 rounded-lg py-3 px-3 leading-tight focus:outline-none"
                 type="email"
-                ref={emailRef}
-                required
+                {...register("email", { required: true })}
               />
             </div>
             <div className="w-full md:w-full px-3 mb-6">
-              <label
-                className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-                htmlFor="Password"
-              >
-                Username
+              <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
+                First Name
               </label>
               <input
                 className="appearance-none block w-full bg-white text-gray-900 font-medium border border-gray-400 rounded-lg py-3 px-3 leading-tight focus:outline-none"
-                type="email"
-                ref={usernameRef}
-                required
+                type="text"
+                {...register("firstName", { required: true })}
+              />
+            </div>
+            <div className="w-full md:w-full px-3 mb-6">
+              <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">
+                Last Name
+              </label>
+              <input
+                className="appearance-none block w-full bg-white text-gray-900 font-medium border border-gray-400 rounded-lg py-3 px-3 leading-tight focus:outline-none"
+                type="text"
+                {...register("lastName", { required: true })}
               />
             </div>
             <div className="w-full md:w-full px-3 mb-6">
@@ -77,8 +223,7 @@ function Register() {
               <input
                 className="appearance-none block w-full bg-white text-gray-900 font-medium border border-gray-400 rounded-lg py-3 px-3 leading-tight focus:outline-none"
                 type="password"
-                ref={passwordRef}
-                required
+                {...register("password", { required: true })}
               />
             </div>
             <div className="w-full md:w-full px-3 mb-6">
@@ -91,8 +236,7 @@ function Register() {
               <input
                 className="appearance-none block w-full bg-white text-gray-900 font-medium border border-gray-400 rounded-lg py-3 px-3 leading-tight focus:outline-none"
                 type="password"
-                ref={confirmPasswordRef}
-                required
+                {...register("confirmPassword", { required: true })}
               />
             </div>
             <div className="w-full flex items-center justify-between px-3 mb-3 ">
@@ -112,8 +256,26 @@ function Register() {
               </div>
             </div>
             <div className="w-full md:w-full px-3 mb-6">
-              <button className="appearance-none block w-full bg-blue-600 text-gray-100 font-bold border border-gray-200 rounded-lg py-3 px-3 leading-tight hover:bg-blue-500 focus:outline-none focus:bg-white focus:border-gray-500">
-                Create Account
+              <button
+                disabled={loading}
+                type="submit"
+                className="appearance-none block w-full bg-blue-600 text-gray-100 font-bold border border-gray-200 rounded-lg py-3 px-3 leading-tight hover:bg-blue-500 focus:outline-none focus:bg-white focus:border-gray-500"
+              >
+                {loading ? (
+                  <span className="flex items-center justify-center">
+                    <svg
+                      className="w-6 h-6 animate-spin mr-1"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path d="M11 17a1 1 0 001.447.894l4-2A1 1 0 0017 15V9.236a1 1 0 00-1.447-.894l-4 2a1 1 0 00-.553.894V17zM15.211 6.276a1 1 0 000-1.788l-4.764-2.382a1 1 0 00-.894 0L4.789 4.488a1 1 0 000 1.788l4.764 2.382a1 1 0 00.894 0l4.764-2.382zM4.447 8.342A1 1 0 003 9.236V15a1 1 0 00.553.894l4 2A1 1 0 009 17v-5.764a1 1 0 00-.553-.894l-4-2z" />
+                    </svg>
+                    Creating...
+                  </span>
+                ) : (
+                  <span>Create Account</span>
+                )}
               </button>
             </div>
             <div className="mx-auto -mb-6 pb-1">
@@ -147,5 +309,3 @@ function Register() {
     </div>
   );
 }
-
-export default Register;

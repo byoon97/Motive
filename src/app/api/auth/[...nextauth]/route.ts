@@ -1,8 +1,9 @@
 import { compare } from 'bcrypt'
-import prisma from '../../../../../lib/prisma'
+import {prisma} from '../../../../../lib/prisma'
 import NextAuth, { type NextAuthOptions } from 'next-auth'
 import CredentialsProvider from 'next-auth/providers/credentials'
 import { User } from '@prisma/client'
+import { toast } from 'react-hot-toast'
 
 export const authOptions: NextAuthOptions = {
   session: {
@@ -34,6 +35,10 @@ export const authOptions: NextAuthOptions = {
           if (!user) {
             return null
           }
+
+          if (!user.verified) {
+            toast.error('You must activate your account via email')
+          }
   
           const isPasswordValid = await compare(
             credentials.password,
@@ -48,6 +53,7 @@ export const authOptions: NextAuthOptions = {
             id: user.id + '',
             email: user.email,
             name: user.firstName,
+            // user properties to send to session
           }
       }
     })

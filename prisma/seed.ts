@@ -3,10 +3,6 @@ import { users } from './seedData/users';
 import { cars } from './seedData/cars';
 import { hash } from 'bcrypt';
 
-type TripWithOwner = Prisma.TripGetPayload<{
-  include: { user: true }
-}>
-
 const prisma = new PrismaClient();
 
 async function clearSeedData() {  
@@ -29,6 +25,7 @@ async function seed() {
           email: user.email,
           firstName: user.firstName,
           lastName: user.lastName,
+          verified: user.verified,
           password: await hash(user.password, 12),
           host: user.host,
         },
@@ -69,7 +66,6 @@ async function seed() {
             car: { connect: { id: createdCars[trip.carId].id } },
           },
         });
-        console.log(createdTrip)
       }
     }
   })
