@@ -4,10 +4,10 @@ import Link from "next/link";
 import React, { useState } from "react";
 import { RxHamburgerMenu } from "react-icons/rx";
 import { CgProfile } from "react-icons/cg";
-import { BsCarFront } from "react-icons/Bs";
+import { BsCarFront } from "react-icons/bs";
 import { AiOutlineHeart } from "react-icons/ai";
 import { RiFilePaperLine } from "react-icons/ri";
-import { GiRoad } from "react-icons/Gi";
+import { GiRoad } from "react-icons/gi";
 import { useSession, signOut } from "next-auth/react";
 
 function Header() {
