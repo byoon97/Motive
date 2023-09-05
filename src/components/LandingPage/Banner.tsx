@@ -2,7 +2,7 @@
 import React from "react";
 import { currentDateWithoutTime } from "@/functions/date";
 import DatePicker from "./BannerComponents/DatePicker";
-import { BsSearch, BsCarFront } from "react-icons/Bs";
+import { BsSearch, BsCarFront } from "react-icons/bs";
 import { useSession } from "next-auth/react";
 
 function Banner() {
