@@ -2,7 +2,7 @@
 /* eslint-disable @next/next/no-img-element */
 "use client";
 import Link from "next/link";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { FcGoogle } from "react-icons/fc";
 import { AiFillGithub, AiOutlineApple } from "react-icons/ai";
 import { signIn } from "next-auth/react";
@@ -11,6 +11,7 @@ import { gql, useMutation, useQuery } from "@apollo/client";
 import toast, { Toaster } from "react-hot-toast";
 import { type SubmitHandler, useForm } from "react-hook-form";
 import { genSaltSync, hashSync } from "bcrypt-ts";
+import { HiOutlineMailOpen } from "react-icons/hi";
 import formData from "form-data";
 import Mailgun from "mailgun.js";
 
@@ -68,6 +69,8 @@ const API_KEY = process.env.NEXT_PUBLIC_MAILGUN_API_KEY || "";
 const DOMAIN = process.env.NEXT_PUBLIC_DOMAIN || "";
 
 export default function Register() {
+  const [showModal, setShowModal] = useState(false);
+  const [email, setEmail] = React.useState("");
   const {
     register,
     handleSubmit,
@@ -115,6 +118,7 @@ export default function Register() {
         });
 
         let id = Number(newUser?.data?.createUser?.id);
+        setEmail(newUser?.data?.createUser?.email);
 
         // attempt to send verification email
         const randomToken = `${(
@@ -127,23 +131,22 @@ export default function Register() {
             user: id,
           },
         });
-
+        setShowModal(true);
+        console.log(showModal, email);
         console.log(API_KEY, DOMAIN);
         const mailgun = new Mailgun(formData);
         const client = mailgun.client({ username: "api", key: API_KEY });
         const messageData = {
           from: `Verification Email <Brandon@${DOMAIN}>`,
-          to: newUser?.data?.createUser?.email,
+          to: email,
           subject: "Please Activate Your Account with Motive",
           text: `Hello ${firstName}, please activate your account with us at Motive by clicking this link http://localhost:3000/activate/${randomToken}`,
           attachment: [{ filename: "/Motive.png" }],
         };
 
         let msg = await client.messages.create(DOMAIN, messageData);
-        console.log(msg);
 
-        // after registration is complete and email is sent, reroute to home page
-        router.push("/");
+        // after registration is complete, toggle modal
       } catch (error) {
         console.error(error);
       }
@@ -154,6 +157,23 @@ export default function Register() {
 
   return (
     <div className="flex items-center justify-center h-screen flex-col bg-white my-8">
+      {/* Modal */}
+      {showModal ? (
+        <div className="fixed inset-0 z-10 bg-white bg-opacity-90 backdrop-filter backdrop-blur-md backdrop-grayscale">
+          <div className="min-h-screen px-6 flex flex-col items-center justify-center animate-zoomIn">
+            <div className="flex flex-col items-center justify-center text-center max-w-sm">
+              <HiOutlineMailOpen className="shrink-0 w-12 h-12 text-blue-500" />
+              <h3 className="mt-2 text-2xl font-semibold text-black">
+                Confirm your email
+              </h3>
+              <p className="mt-4 text-lg text-black">
+                We emailed a magic link to <strong>{email}</strong>. Check your
+                inbox and click the link in the email to login.
+              </p>
+            </div>
+          </div>
+        </div>
+      ) : null}
       <Toaster />
       <div className="text-center">
         <div className="flex items-center justify-center">
