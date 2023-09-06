@@ -6,6 +6,7 @@ builder.prismaObject('Car', {
     id: t.exposeID('id'),
     make: t.exposeString('make'),
     model: t.exposeString('model'),
+    ppd: t.exposeInt('ppd'),
     totalTrips: t.exposeInt('totalTrips'),
     rating: t.exposeInt('rating'),
     address: t.exposeString('address'),

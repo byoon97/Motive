@@ -26,30 +26,30 @@ export type Make = {
         name: 'Nissan',
     },
     {
-    id: 5,
-    image: '/make/lambo.jpeg',
-    name: 'Lamborghini',
+      id: 5,
+      image: '/make/lambo.jpeg',
+      name: 'Lamborghini',
     },
     {
-    id: 6,
-        image: '/make/porsche.jpeg',
-        name: 'Porsche',
+      id: 6,
+      image: '/make/porsche.jpeg',
+      name: 'Porsche',
       },
-      {
-        id: 7,
-        image: '/make/subur.jpeg',
-        name: 'Suburu',
-      },
-      {
-        id: 8,
-        image: '/make/tesla.jpeg',
-        name: 'Tesla',
-      },
-      {
-        id: 9,
-        image: '/make/toyota.jpeg',
-        name: 'Toyota',
-      },
+    {
+      id: 7,
+      image: '/make/subur.jpeg',
+      name: 'Suburu',
+    },
+    {
+      id: 8,
+      image: '/make/tesla.jpeg',
+      name: 'Tesla',
+    },
+    {
+      id: 9,
+      image: '/make/toyota.jpeg',
+      name: 'Toyota',
+    },
   ];
   
   export default makes;

@@ -43,6 +43,7 @@ async function seed() {
                 model: car.model,
                 image: car.image,
                 totalTrips: car.totalTrips,
+                ppd: car.ppd,
                 address: car.address,
                 rating: car.rating,
                 owner: { connect: { id: createdUser.id } },

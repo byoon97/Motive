@@ -3,6 +3,7 @@ import React, { useRef, RefObject, useState, useEffect } from "react";
 import MakeCard from "./MakeCard";
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 import { Make } from "../../../../public/make/Cars";
+import Link from "next/link";
 
 type MakeCarouselProps = {
   items: Make[];
@@ -93,7 +94,9 @@ const MakeCarousel: React.FC<MakeCarouselProps> = ({ items }) => {
                 : "w-1/5 sm:w-1/5 md:w-1/5 lg:w-1/5 xl:w-1/5"
             }`}
           >
-            <MakeCard make={make} />
+            <Link href="/">
+              <MakeCard make={make} />
+            </Link>
           </div>
         ))}
       </div>
