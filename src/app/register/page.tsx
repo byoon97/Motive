@@ -170,6 +170,9 @@ export default function Register() {
                 We emailed a magic link to <strong>{email}</strong>. Check your
                 inbox and click the link in the email to login.
               </p>
+              <Link href="/">
+                <button>Home</button>
+              </Link>
             </div>
           </div>
         </div>
