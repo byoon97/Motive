@@ -12,7 +12,6 @@ import FAQ from "@/components/LandingPage/FAQ";
 export default function Home() {
   return (
     <div className="h-screen bg-white overflow-x-hidden">
-      <Header />
       <Banner />
       <Content />
       <CarbonNeutral />

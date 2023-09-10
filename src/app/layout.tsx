@@ -1,3 +1,4 @@
+import Header from "@/components/LandingPage/Header";
 import { ApolloWrapper } from "../../lib/apollo-wrapper";
 import ProvidersWrapper from "./ProviderWrapper";
 import "./globals.css";
@@ -15,7 +16,13 @@ export default function RootLayout({
       <body className={inter.className}>
         {" "}
         <ApolloWrapper>
-          <ProvidersWrapper>{children}</ProvidersWrapper>
+          <ProvidersWrapper>
+            <div className="bg-white">
+              {" "}
+              <Header />
+              {children}
+            </div>
+          </ProvidersWrapper>
         </ApolloWrapper>
       </body>
     </html>

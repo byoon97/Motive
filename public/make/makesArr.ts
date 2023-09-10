@@ -36,7 +36,7 @@ export interface Makes {
     ]   
 }
 
-const makesDescArr:Makes[] = [
+export const makesDescArr:Makes[] = [
     {
         name: 'Jeep',
         subTitle: 'For the road less traveled',

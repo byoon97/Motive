@@ -12,16 +12,35 @@ builder.prismaObject('Car', {
     address: t.exposeString('address'),
     owner: t.relation('owner'),
     trips: t.relation('trips'),
+    image: t.field({
+      type: ['String'],
+      resolve: (root) => root.image,
+    }),
   })
 })
 
 builder.queryField("getCars", (t) =>
-// 2. 
   t.prismaField({
-    // 3. 
     type: ['Car'],
-    // 4. 
     resolve: (query, _parent, _args, _ctx, _info) =>
       prisma.car.findMany({ ...query })
+  })
+)
+
+builder.queryField("getCarByMake", (t) =>
+  t.prismaField({
+    type: ['Car'],
+    args : {
+      make: t.arg.string({required: true}),
+    },
+    resolve: async (_query, _parent, args, _ctx, _info) => {
+      const { make } = args
+      const cars =  await prisma.car.findMany({
+        where : {
+          make
+        }
+      })
+      return cars
+    }
   })
 )
