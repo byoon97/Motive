@@ -6,7 +6,7 @@ import { gql, useQuery } from "@apollo/client";
 import { useParams } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import { makesDescArr } from "../../../../public/make/makesArr";
-import Reviews from "@/components/MakePage/Reviews";
+import Reviews from "@/components/MakePage/ReviewComponents/Reviews";
 
 const GetCarByMake = gql`
   query GetCarByMake($make: String!) {
@@ -37,6 +37,7 @@ export interface Trip {
   review: string;
   startDate: Date;
   endDate: Date;
+  model: string;
   user: {
     firstName: string;
     lastName: string;
@@ -60,9 +61,9 @@ export default function MakePage() {
   useEffect(() => {
     const tripsArr = () => {
       let arr: Trip[] = [];
-      cars.getCarByMake.forEach((car: { trips: any[] }) => {
+      cars.getCarByMake.forEach((car: { model: string; trips: any[] }) => {
         car.trips.forEach((trip) => {
-          arr.push(trip);
+          arr.push({ ...trip, model: car.model });
         });
         setTrips(arr);
       });
