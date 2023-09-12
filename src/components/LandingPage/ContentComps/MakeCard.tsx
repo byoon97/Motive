@@ -8,7 +8,7 @@ type MakeCardProps = {
 
 const MakeCard: React.FC<MakeCardProps> = ({ make }) => {
   return (
-    <div className="relative h-190 w-206 bg-gray-200 rounded-lg overflow-hidden shadow-lg cursor:pointer">
+    <div className="relative h-190 w-206 bg-gray-200 rounded-lg overflow-hidden shadow-lg cursor:pointer hover:border-blue-600 hover:border-[1px]">
       <div className="flex flex-col h-full">
         <img
           src={make.image}

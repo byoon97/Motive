@@ -7,6 +7,7 @@ import { useParams } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import { makesDescArr } from "../../../../public/make/makesArr";
 import Reviews from "@/components/MakePage/ReviewComponents/Reviews";
+import Destination from "@/components/LandingPage/Destination";
 
 const GetCarByMake = gql`
   query GetCarByMake($make: String!) {
@@ -80,6 +81,7 @@ export default function MakePage() {
       {loading ? null : <MakeCarousel make={make} cars={cars.getCarByMake} />}
       <Content props={carData} />
       {loading ? null : <Reviews props={trips} />}
+      <Destination cities={[]} />
     </div>
   );
 }

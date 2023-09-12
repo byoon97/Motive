@@ -17,7 +17,7 @@ type MakeCardProps = {
 
 const MakeCard: React.FC<MakeCardProps> = ({ car }) => {
   return (
-    <div className="text-black flex shrink-0 flex-col relative w-[328px] h-[300px] rounded-lg shadow-lg cursor:pointer">
+    <div className="text-black flex shrink-0 flex-col relative w-[328px] h-[300px] rounded-lg shadow-lg cursor:pointer hover:border-blue-600 hover:border-[1px]">
       <img
         src={car.image[0]}
         alt="Card Image"

@@ -22,7 +22,7 @@ const Experiences: React.FC = () => {
   };
 
   return (
-    <div className="flex flex-col text-black p-3 sm:mb-8 lg:px-[15%] xl:px-[25%]">
+    <div className="flex flex-col text-black mt-6 p-3 sm:mb-8 lg:px-[15%] xl:px-[25%]">
       <div className="relative p-3">
         <style>
           {`.carousel-container 
