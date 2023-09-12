@@ -10,7 +10,7 @@ export const { getClient } = registerApolloClient(() => {
     cache: new NextSSRInMemoryCache(),
     link: new HttpLink({
       // uri: "http://localhost:3000/api/graphql", // development
-      uri: "https://motive-35noco934-byoon97.vercel.app/" // Production
+      uri: "motive-git-main-byoon97.vercel.app/api/graphql" // Production
     }),
   });
 });
