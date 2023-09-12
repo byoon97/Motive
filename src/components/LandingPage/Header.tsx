@@ -20,7 +20,7 @@ function Header() {
   };
 
   return (
-    <header className="flex justify-between p-3 max-w-7xl mx-auto h-14">
+    <header className="flex justify-between p-3 max-w-7xl mx-auto h-14 bg-white">
       <div className="flex items-center space-x-5">
         <Link href="/">
           <img

@@ -16,7 +16,19 @@ module.exports = {
     },
     extend: {
       fontFamily: {
-        custom: ["Insignia", "sans-serif"], // Use the font name you want
+        sans: [
+          "RlBasisGrotesque",
+          "Avenir",
+          "Helvetica Neue",
+          "Helvetica",
+          "sans-serif",
+        ], // Use the font name you want
+        headerFont: [
+          "RlFreight",
+          "HoeflerText-Black",
+          "Times New Roman",
+          "serif",
+        ],
       },
       colors: {},
     },

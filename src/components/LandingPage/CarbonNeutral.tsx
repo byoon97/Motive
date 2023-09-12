@@ -5,7 +5,7 @@ import React from "react";
 
 const CarbonNeutral = () => {
   return (
-    <div className="bg-rose-50 p-4 mt-20 pt-20 flex flex-col md:flex-row md:items-start lg:w-4/5 items-center justify-center">
+    <div className="bg-rose-50 p-4 mt-20 pt-20 flex flex-col md:flex-row md:items-start lg:w-4/5 items-center justify-center md:mb-12">
       <img
         src={"/carbonfriendly1.png"}
         alt="Card Image"

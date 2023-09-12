@@ -27,7 +27,7 @@ function makeClient() {
     uri: "http://localhost:3000/api/graphql",
   });
 
-  const link = ApolloLink.from([errorLink, httpLink]);
+  const link = ApolloLink.from([httpLink]);
 
   return new NextSSRApolloClient({
     cache: new NextSSRInMemoryCache(),
@@ -38,7 +38,6 @@ function makeClient() {
               stripDefer: true,
             }),
             httpLink,
-            errorLink,
           ])
         : link,
   });

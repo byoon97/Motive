@@ -61,7 +61,7 @@ export const cars = [
         ,'https://media.ed.edmunds-media.com/mercedes-benz/gle-class/2021/oem/2021_mercedes-benz_gle-class_4dr-suv_gle-450-4matic_rsd_oem_1_175.jpg',
         ],
         trips: [],
-        rating: 5
+        rating: 0
     },
     {   
         id: 2,
@@ -89,8 +89,7 @@ export const cars = [
         'https://img2.carmax.com/assets/24448222/image/10.jpg?width=1600&height=1200',
         'https://img2.carmax.com/assets/24448222/image/19.jpg?width=1600&height=1200',
         'https://img2.carmax.com/assets/24448222/image/20.jpg?width=1600&height=1200'],
-        trips: calculateAverageRating([trips[4],trips[5]]),
-        rating: 5
+        rating: calculateAverageRating([trips[4],trips[5]])
     },
     {   
         id: 4,
@@ -104,8 +103,7 @@ export const cars = [
         'https://static.cargurus.com/images/forsale/2023/08/11/08/08/2017_lexus_rc_f-pic-7646294000897384187-1024x768.jpeg',
         'https://static.cargurus.com/images/forsale/2023/08/11/08/08/2017_lexus_rc_f-pic-4112410148586814347-1024x768.jpeg',
         'https://static.cargurus.com/images/forsale/2023/08/11/08/08/2017_lexus_rc_f-pic-4335103097286044569-1024x768.jpeg'],
-        trips: calculateAverageRating([trips[6],trips[7],trips[8],trips[9],trips[10],]),
-        rating: 5
+        rating: calculateAverageRating([trips[6],trips[7],trips[8],trips[9],trips[10],])
     },
     {   
         id: 5,
@@ -119,8 +117,8 @@ export const cars = [
         'https://img2.carmax.com/assets/23220153/image/10.jpg?width=1600&height=1200',
         'https://img2.carmax.com/assets/23220153/image/18.jpg?width=1600&height=1200',
         'https://img2.carmax.com/assets/23220153/image/13.jpg?width=1600&height=1200'],
-        trips: calculateAverageRating([trips[11],trips[12],trips[13],]),
-        rating: 5
+        rating: calculateAverageRating([trips[11],trips[12],trips[13],]),
+       
     },
     {   
         id: 6,
@@ -134,8 +132,7 @@ export const cars = [
         'https://static.cargurus.com/images/forsale/2023/06/12/21/37/2022_tesla_model_x-pic-6426709072387045116-1024x768.jpeg',
         'https://static.cargurus.com/images/forsale/2023/06/12/21/37/2022_tesla_model_x-pic-1450742016518758700-1024x768.jpeg',
         'https://static.cargurus.com/images/forsale/2023/06/12/21/37/2022_tesla_model_x-pic-4700801719282134810-1024x768.jpeg'],
-        trips: calculateAverageRating([trips[14],trips[15],]),
-        rating: 5
+        rating: calculateAverageRating([trips[14],trips[15],]),
     },
     {   
         id: 7,
@@ -149,8 +146,7 @@ export const cars = [
         'https://listings-prod.tcimg.net/listings/214232/41/12/JTHGZ1B20P5061241/BB5EZMBLQZYGXA2HLF7MMN7DKM-cr-1400.jpg',
         'https://listings-prod.tcimg.net/listings/214232/41/12/JTHGZ1B20P5061241/2YTIREY235R4JJHHNYGHY5ZZDU-cr-1400.jpg',
         'https://listings-prod.tcimg.net/listings/214232/41/12/JTHGZ1B20P5061241/7KVG4HJIE4DXI3XKK4OGUUQ6VU-cr-1400.jpg'],
-        trips: calculateAverageRating([trips[16],]),
-        rating: 5
+        rating: calculateAverageRating([trips[16],]),
     },
     {   
         id: 8,
@@ -164,8 +160,7 @@ export const cars = [
         'https://img2.carmax.com/assets/24292595/image/11.jpg?width=1600&height=1200',
         'https://img2.carmax.com/assets/24292595/image/20.jpg?width=1600&height=1200',
         'https://img2.carmax.com/assets/24292595/image/21.jpg?width=1600&height=1200'],
-        trips: calculateAverageRating([trips[17],trips[18],]),
-        rating: 5
+        rating: calculateAverageRating([trips[17],trips[18],]),
     },
     {   
         id: 9,
@@ -179,7 +174,34 @@ export const cars = [
         'https://img2.carmax.com/assets/24842170/image/11.jpg?width=1600&height=1200',
         'https://img2.carmax.com/assets/24842170/image/21.jpg?width=1600&height=1200',
         'https://img2.carmax.com/assets/24842170/image/5.jpg?width=1600&height=1200'],
-        trips: calculateAverageRating([trips[19],trips[20],trips[21],trips[22],]),
-        rating: 5
+        rating: calculateAverageRating([trips[19],trips[20],trips[21],trips[22],]),
+    },
+    {   
+        id: 10,
+        make: 'Tesla',
+        model: generateCarModel('Tesla'),
+        totalTrips: 0,
+        ppd: 60,
+        address: '654 Ocean View Pkwy, Brooklyn, NY',
+        image: ['https://static.cargurus.com/images/forsale/2023/06/12/21/37/2022_tesla_model_x-pic-6338590471141141348-1024x768.jpeg',
+        'https://static.cargurus.com/images/forsale/2023/06/12/21/37/2022_tesla_model_x-pic-8070626654840684229-1024x768.jpeg',
+        'https://static.cargurus.com/images/forsale/2023/06/12/21/37/2022_tesla_model_x-pic-6426709072387045116-1024x768.jpeg',
+        'https://static.cargurus.com/images/forsale/2023/06/12/21/37/2022_tesla_model_x-pic-1450742016518758700-1024x768.jpeg',
+        'https://static.cargurus.com/images/forsale/2023/06/12/21/37/2022_tesla_model_x-pic-4700801719282134810-1024x768.jpeg'],
+        rating: 0,
+    },
+    {   
+        id: 11,
+        make: 'Tesla',
+        model: generateCarModel('Tesla'),
+        totalTrips: 0,
+        ppd: 75,
+        address: '654 Ocean View Pkwy, Brooklyn, NY',
+        image: ['https://static.cargurus.com/images/forsale/2023/06/12/21/37/2022_tesla_model_x-pic-6338590471141141348-1024x768.jpeg',
+        'https://static.cargurus.com/images/forsale/2023/06/12/21/37/2022_tesla_model_x-pic-8070626654840684229-1024x768.jpeg',
+        'https://static.cargurus.com/images/forsale/2023/06/12/21/37/2022_tesla_model_x-pic-6426709072387045116-1024x768.jpeg',
+        'https://static.cargurus.com/images/forsale/2023/06/12/21/37/2022_tesla_model_x-pic-1450742016518758700-1024x768.jpeg',
+        'https://static.cargurus.com/images/forsale/2023/06/12/21/37/2022_tesla_model_x-pic-4700801719282134810-1024x768.jpeg'],
+        rating: 0,
     },
 ]

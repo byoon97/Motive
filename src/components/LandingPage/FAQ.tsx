@@ -101,7 +101,7 @@ const FQA: React.FC = () => {
   };
 
   return (
-    <div className="p-3 text-black lg:px-[15%] xl:px-[25%]">
+    <div className="p-3 text-black lg:px-[15%] xl:px-[25%] md:mb-8">
       <div className="flex items-center justify-between mb-4">
         <div className="relative">
           <div className="absolute bottom-0 left-0 w-full mx-2 h-1/2 bg-violet-200 z-10"></div>
@@ -138,7 +138,7 @@ const FQA: React.FC = () => {
                   )}
                 </div>
                 {isQuestionOpen(question.id) && (
-                  <div className="mt-2 text-gray-600">
+                  <div className="mt-2 text-gray-600 font-sans">
                     <div className="">{question.answer}</div>
                   </div>
                 )}

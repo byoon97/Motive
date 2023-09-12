@@ -51,7 +51,7 @@ const MakeCarousel: React.FC<MakeCarouselProps> = ({ items }) => {
   }, []);
 
   return (
-    <div className="relative p-3 pt-3">
+    <div className="relative p-3 pt-3 text-black">
       <style>
         {`
       .carousel-container {
@@ -60,7 +60,7 @@ const MakeCarousel: React.FC<MakeCarouselProps> = ({ items }) => {
     `}
       </style>
       <div className="flex items-center justify-between mb-4">
-        <h4 className="p-3 font-bold">Browse by Make</h4>
+        <h4 className="p-3 font-bold text-black">Browse by Make</h4>
         <div className="flex flex-row">
           <button
             onClick={scrollLeft}
@@ -94,7 +94,12 @@ const MakeCarousel: React.FC<MakeCarouselProps> = ({ items }) => {
                 : "w-1/5 sm:w-1/5 md:w-1/5 lg:w-1/5 xl:w-1/5"
             }`}
           >
-            <Link href="/">
+            <Link
+              href={{
+                pathname: `/rent-a-car/${make.name}`,
+                query: { keyword: make.name },
+              }}
+            >
               <MakeCard make={make} />
             </Link>
           </div>
