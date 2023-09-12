@@ -75,7 +75,7 @@ const Content: React.FC<Props> = ({ props }) => {
         )}
       </div>
 
-      <div className="flex md:items-center md:justify-center">
+      <div className="flex md:items-center md:justify-center mb-24">
         <div
           id="DescriptionSection"
           className="flex sm:flex-col items-center justify-center lg:flex-row my-8 mx-4 lg:mx-6 md:w-[400px] lg:w-full"

@@ -34,21 +34,21 @@ const MakeCarousel: React.FC<Data> = ({ make, cars }) => {
 
   const scrollLeft = (): void => {
     carouselRef.current?.scrollBy({
-      left: -300, // Adjust the value based on your card width
+      left: -340, // Adjust the value based on your card width
       behavior: "smooth",
     });
   };
 
   const scrollRight = (): void => {
     carouselRef.current?.scrollBy({
-      left: 300, // Adjust the value based on your card width
+      left: 340, // Adjust the value based on your card width
       behavior: "smooth",
     });
   };
 
   return (
     <div className="relative p-3 pt-3">
-      <div className="flex shrink items-center justify-between mb-4">
+      <div className="flex flex-row justify-between mb-4 w-full max-w-[1024px] mx-auto">
         <h4 className="p-3 font-bold text-black">{make}s&apos; Available</h4>
         <div className="flex flex-row">
           <button
@@ -67,12 +67,11 @@ const MakeCarousel: React.FC<Data> = ({ make, cars }) => {
       </div>
       <div
         ref={carouselRef}
-        className="flex flex-row justify-evenly whitespace-nowrap carousel-container scrollbar-hide"
-        style={{ scrollSnapType: "x mandatory" }}
+        className="flex flex-row justify-between max-w-[1100px] h-[410px] ml-6 lg:mx-auto overflow-x-auto"
       >
         {cars &&
           cars.map((car) => (
-            <div key={car.id}>
+            <div key={car.id} className="flex-shrink-0 mx-2 w-[360px]">
               <Link
                 href={{
                   pathname: `/rent-a-car/${car.id}`,

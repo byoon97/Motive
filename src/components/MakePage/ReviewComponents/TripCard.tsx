@@ -39,7 +39,7 @@ const TripCard: React.FC<Props> = ({ trip }) => {
   return (
     <div
       id="Card"
-      className="font-sans w-[328px] h-[222px] bg-white rounded-md flex flex-row justify-center pt-6"
+      className="font-sans w-[328px] h-[222px] bg-white rounded-md flex flex-row justify-center pt-6 border-[1px] border-stone-400"
     >
       <div id="ImageContainer" className="mr-8">
         Image
