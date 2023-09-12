@@ -49,7 +49,9 @@ const MakeCarousel: React.FC<Data> = ({ make, cars }) => {
   return (
     <div className="relative p-3 pt-3">
       <div className="flex flex-row justify-between mb-4 w-full max-w-[1024px] mx-auto">
-        <h4 className="p-3 font-bold text-black">{make}s&apos; Available</h4>
+        <h4 className="p-3 font-bold text-black text-[30px]">
+          {make}s&apos; Available
+        </h4>
         <div className="flex flex-row">
           <button
             onClick={scrollLeft}
