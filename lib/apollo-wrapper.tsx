@@ -24,7 +24,8 @@ const errorLink = onError(({ graphQLErrors, networkError }) => {
 
 function makeClient() {
   const httpLink = new HttpLink({
-    uri: "http://localhost:3000/api/graphql",
+    // uri: "http://localhost:3000/api/graphql", //development
+    uri: "https://motive-35noco934-byoon97.vercel.app/", //production
   });
 
   const link = ApolloLink.from([httpLink]);
