@@ -3,6 +3,7 @@ import { ApolloWrapper } from "../../lib/apollo-wrapper";
 import ProvidersWrapper from "./ProviderWrapper";
 import "./globals.css";
 import { Inter } from "next/font/google";
+import Footer from "@/components/LandingPage/Footer";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -21,6 +22,7 @@ export default function RootLayout({
               {" "}
               <Header />
               {children}
+              <Footer />
             </div>
           </ProvidersWrapper>
         </ApolloWrapper>

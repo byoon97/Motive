@@ -18,7 +18,7 @@ export default function Home() {
       <Experiences />
       <Destination cities={[]} />
       <FAQ />
-      <Footer />
+
     </div>
   );
 }
