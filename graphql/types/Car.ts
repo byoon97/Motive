@@ -1,3 +1,4 @@
+import { Car } from "@prisma/client";
 import { prisma } from "../../lib/prisma";
 import { builder } from "../builder";
 
@@ -24,6 +25,23 @@ builder.queryField("getCars", (t) =>
     type: ['Car'],
     resolve: (query, _parent, _args, _ctx, _info) =>
       prisma.car.findMany({ ...query })
+  })
+)
+
+builder.queryField("getCarByID", (t) => 
+  t.prismaField({
+    type: 'Car',
+    args : {
+      id: t.arg.int({ required: true }),
+    },
+    resolve: (_query, _parent, args, _ctx, _info) => {
+      const { id } = args;
+      return prisma.car.findUnique({
+        where: {
+          id
+        }
+      }) as Promise<Car>; // Explicitly cast to Promise<Car>
+    }
   })
 )
 

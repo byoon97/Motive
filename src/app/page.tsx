@@ -1,6 +1,6 @@
-import Header from "@/components/LandingPage/Header";
+import Header from "@/components/Header";
 import Banner from "@/components/LandingPage/Banner";
-import Footer from "@/components/LandingPage/Footer";
+import Footer from "@/components/Footer";
 import Content from "@/components/LandingPage/Content";
 import CarbonNeutral from "@/components/LandingPage/CarbonNeutral";
 import Experiences from "@/components/LandingPage/Experiences";
@@ -18,7 +18,6 @@ export default function Home() {
       <Experiences />
       <Destination cities={[]} />
       <FAQ />
-
     </div>
   );
 }
