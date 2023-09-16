@@ -120,11 +120,8 @@ const Content: React.FC<Props> = ({ props }) => {
           id="models"
           className="flex sm:flex-col items-center justify-center lg:flex-row my-8 mx-4 lg:mx-6 md:w-[400px] lg:w-full"
         >
-          {props.models.map((model) => (
-            <div
-              key={props.models.indexOf(model)}
-              className="sm:pb-10 lg:px-6 lg:w-[333px]"
-            >
+          {props.models.map((model, index) => (
+            <div key={index} className="sm:pb-10 lg:px-6 lg:w-[333px]">
               <h4 className="m-0 text-#121214 mb-3 font-sans font-semibold text-xl tracking-normal leading-5">
                 {model.model}
               </h4>

@@ -2,10 +2,9 @@
 "use client";
 import React from "react";
 import { gql, useQuery } from "@apollo/client";
-import { makeClient } from "../../../../../lib/apollo-wrapper";
-import { Car } from "@prisma/client";
 import { useParams } from "next/navigation";
-import { cars } from "../../../../../prisma/seedData/cars";
+import Carousel from "@/components/CarViewComponents/Carousel";
+import Content from "@/components/CarViewComponents/Content";
 
 const GET_CAR_QUERY = gql`
   query GetCarByID($id: Int!) {
@@ -16,6 +15,7 @@ const GET_CAR_QUERY = gql`
       totalTrips
       rating
       address
+      image
       owner {
         lastName
         firstName
@@ -28,10 +28,31 @@ const GET_CAR_QUERY = gql`
           firstName
         }
       }
-      image
     }
   }
 `;
+
+interface Car {
+  make: string;
+  model: string;
+  ppd: number;
+  totalTrips: number;
+  rating: number;
+  address: string;
+  image: string[];
+  owner: {
+    lastName: string;
+    firstName: string;
+  };
+  trips: {
+    rating: number;
+    review: string;
+    endDate: Date;
+    user: {
+      firstName: string;
+    };
+  };
+}
 
 const Page: React.FC = () => {
   const params = useParams();
@@ -45,14 +66,9 @@ const Page: React.FC = () => {
   }, [loading]);
 
   return car ? (
-    <div id="Container" className="flex flex-col">
-      <div id="ImageContainer" className="">
-        <img
-          src={car.image[0]}
-          alt=""
-          className="w-screen max-h-[400px] md:object-none"
-        />
-      </div>
+    <div id="Container" className="flex flex-col pt-[0.8%]">
+      <Carousel images={car.image} />
+      <Content details={(({ image, owner, trips, ...o }) => o)(car)} />
     </div>
   ) : (
     <div>loading</div>

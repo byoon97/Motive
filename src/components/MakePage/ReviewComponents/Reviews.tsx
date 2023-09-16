@@ -52,11 +52,8 @@ const Reviews: React.FC<Props> = ({ props }) => {
         className="flex flex-row max-w-[1024px] ml-6 lg:mx-auto overflow-x-auto"
         ref={carouselRef}
       >
-        {props.map((trip) => (
-          <div
-            key={props.indexOf(trip)}
-            className="w-[328px] flex-shrink-0 mr-4"
-          >
+        {props.map((trip, index) => (
+          <div key={index} className="w-[328px] flex-shrink-0 mr-4">
             <TripCard trip={trip} />
           </div>
         ))}

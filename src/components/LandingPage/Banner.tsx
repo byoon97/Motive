@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import { useSession } from "next-auth/react";
-import SearchBar from "../BannerComponents/SearchBar";
+import SearchBar from "../DateTimeComponents/SearchBar";
 
 function Banner() {
   return (

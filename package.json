@@ -48,6 +48,7 @@
     "react-icons": "^4.9.0",
     "react-tailwindcss-datepicker": "^1.6.1",
     "sequelize": "^6.32.1",
+    "swiper": "^10.2.0",
     "ts-jest": "^29.1.1"
   },
   "devDependencies": {

@@ -1,5 +1,5 @@
 import React from "react";
-import SearchBar from "../BannerComponents/SearchBar";
+import SearchBar from "../DateTimeComponents/SearchBar";
 import { useParams } from "next/navigation";
 import { BsArrowRightShort } from "react-icons/bs";
 import Link from "next/link";
