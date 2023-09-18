@@ -71,6 +71,21 @@ async function seed() {
     }
   })
 
+    users.forEach(async (user:any) => {
+      const averageRating = user.cars.reduce((sum:number, car:Car) => sum + car.rating, 0) / user.cars.length
+      const totalTrips = user.cars.reduce((sum: number, car:Car) => sum + (car.totalTrips || 0), 0);
+      console.log(totalTrips, averageRating)
+      const updateUser = await prisma.user.update({
+        where: {
+          email: user.email,
+        },
+        data: {
+          rating: (!Number.isNaN(averageRating) ? averageRating : 0),
+          allStar: (totalTrips > 5 && averageRating > 3)
+        },
+      })
+    })
+
   } catch (error) {
     console.error('Error seeding data:', error);
   } finally {

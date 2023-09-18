@@ -2,11 +2,12 @@ import React from "react";
 
 export default function TimeSelector() {
   return (
-    <div className="rounded-lg text-xs">
+    <div className="rounded-lg text-xs font-Helvetica Neue">
       <div className="flex">
         <select
           name="hours"
           className="bg-transparent appearance-none outline-none"
+          defaultValue="10"
         >
           <option value="01">01</option>
           <option value="02">02</option>
@@ -21,10 +22,11 @@ export default function TimeSelector() {
           <option value="11">10</option>
           <option value="12">12</option>
         </select>
-        <span className="mr-1">:</span>
+        <span className="mr-[1px]">:</span>
         <select
           name="minutes"
           className="bg-transparent appearance-none outline-none mr-1"
+          defaultValue="0"
         >
           <option value="0">00</option>
           <option value="30">30</option>
@@ -32,6 +34,7 @@ export default function TimeSelector() {
         <select
           name="ampm"
           className="bg-transparent appearance-none outline-none"
+          defaultValue="am"
         >
           <option value="am">AM</option>
           <option value="pm">PM</option>

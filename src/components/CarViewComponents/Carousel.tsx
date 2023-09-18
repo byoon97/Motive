@@ -27,7 +27,7 @@ const Carousel: React.FC<CarouselProps> = ({ images }) => {
       >
         {images.map((image, index) => (
           <SwiperSlide key={index}>
-            <div className="relative w-full max-h-[700px]">
+            <div className="relative w-full h-[300px] max-h-[700px]">
               <img
                 src={image}
                 alt={`Slide ${index + 1}`}

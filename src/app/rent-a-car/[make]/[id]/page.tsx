@@ -5,6 +5,7 @@ import { gql, useQuery } from "@apollo/client";
 import { useParams } from "next/navigation";
 import Carousel from "@/components/CarViewComponents/Carousel";
 import Content from "@/components/CarViewComponents/Content";
+import Host from "@/components/CarViewComponents/Host";
 
 const GET_CAR_QUERY = gql`
   query GetCarByID($id: Int!) {
@@ -43,6 +44,7 @@ interface Car {
   owner: {
     lastName: string;
     firstName: string;
+    createdAt: Date;
   };
   trips: {
     rating: number;
@@ -63,12 +65,14 @@ const Page: React.FC = () => {
 
   React.useEffect(() => {
     if (!loading) setCar(data.getCarByID);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [loading]);
 
   return car ? (
     <div id="Container" className="flex flex-col pt-[0.8%]">
       <Carousel images={car.image} />
       <Content details={(({ image, owner, trips, ...o }) => o)(car)} />
+      <Host host={car.owner} />
     </div>
   ) : (
     <div>loading</div>
