@@ -20,6 +20,10 @@ const GET_CAR_QUERY = gql`
       owner {
         lastName
         firstName
+        image
+        allStar
+        rating
+        totalTrips
       }
       trips {
         rating
@@ -45,6 +49,10 @@ interface Car {
     lastName: string;
     firstName: string;
     createdAt: Date;
+    image: string;
+    allStar: boolean;
+    rating: number;
+    totalTrips: number;
   };
   trips: {
     rating: number;
@@ -66,7 +74,8 @@ const Page: React.FC = () => {
   React.useEffect(() => {
     if (!loading) setCar(data.getCarByID);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [loading]);
+    console.log(error, loading, data, params);
+  }, [loading, data]);
 
   return car ? (
     <div id="Container" className="flex flex-col pt-[0.8%]">

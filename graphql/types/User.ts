@@ -8,10 +8,16 @@ builder.prismaObject('User', {
     firstName: t.exposeString('firstName'),
     lastName: t.exposeString('lastName'),
     password: t.exposeString('password'),
+    image: t.exposeString('image', {
+      nullable: true
+    }),
+    totalTrips: t.exposeInt('totalTrips'),
+    allStar: t.exposeBoolean('allStar'),
+    rating: t.exposeInt('rating'),
     host: t.exposeBoolean('host'),
     verified: t.exposeBoolean('verified'),
     cars: t.relation('cars'),
-    trips: t.relation('trips')
+    trips: t.relation('trips'),
   })
 })
 

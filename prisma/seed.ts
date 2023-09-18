@@ -26,6 +26,7 @@ async function seed() {
           firstName: user.firstName,
           lastName: user.lastName,
           verified: user.verified,
+          image: user.image,
           password: await hash(user.password, 12),
           host: user.host,
         },
@@ -75,13 +76,14 @@ async function seed() {
       const averageRating = user.cars.reduce((sum:number, car:Car) => sum + car.rating, 0) / user.cars.length
       const totalTrips = user.cars.reduce((sum: number, car:Car) => sum + (car.totalTrips || 0), 0);
       console.log(totalTrips, averageRating)
-      const updateUser = await prisma.user.update({
+      await prisma.user.update({
         where: {
           email: user.email,
         },
         data: {
           rating: (!Number.isNaN(averageRating) ? averageRating : 0),
-          allStar: (totalTrips > 5 && averageRating > 3)
+          allStar: (totalTrips > 5 && averageRating > 3),
+          totalTrips: totalTrips
         },
       })
     })

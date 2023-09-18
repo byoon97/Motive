@@ -1,3 +1,5 @@
+//npx prisma migrate dev --name init
+
 generator client {
   provider = "prisma-client-js"
 }
@@ -21,6 +23,8 @@ model User {
   rating    Int      @default(0)
   allStar   Boolean  @default(false)
   host      Boolean  @default(false)
+  totalTrips Int     @default(0)
+  image     String?    
   password  String
   verified  Boolean @default(false)
   cars      Car[]
