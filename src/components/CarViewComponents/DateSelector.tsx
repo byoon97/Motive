@@ -1,6 +1,7 @@
 import React from "react";
 import TimeSelector from "../DateTimeComponents/Time";
 import { IoIosArrowDown } from "react-icons/io";
+import { useGlobalContext } from "@/app/context/store";
 
 interface DateSelectorProps {
   selectedDate: string;
@@ -27,8 +28,29 @@ const DateSelector: React.FC<DateSelectorProps> = ({
     }
   };
 
+  const { setDaysRenting } = useGlobalContext();
+
+  function calculateDateDifference(startDateStr: string, endDateStr: string) {
+    // Convert the input date strings to Date objects
+    const startDate = new Date(startDateStr);
+    const endDate = new Date(endDateStr);
+
+    const oneDay = 24 * 60 * 60 * 1000;
+    const startDateTimestamp = startDate.getTime();
+    const endDateTimestamp = endDate.getTime();
+    const daysDifference = Math.round(
+      Math.abs((endDateTimestamp - startDateTimestamp) / oneDay)
+    );
+
+    return daysDifference;
+  }
+
+  React.useEffect(() => {
+    setDaysRenting(calculateDateDifference(selectedDate, selectedReturnDate));
+  }, [selectedDate, selectedReturnDate, setDaysRenting]);
+
   return (
-    <div id="DatePicker" className="flex flex-col">
+    <div id="DatePicker" className="flex flex-col font-sans">
       <div className="flex flex-col justify-start cursor-pointer mb-4">
         <div className="text-[#593CFB] font-light font-sans">Trip Start</div>
         <div className="flex flex-row h-[33px] text-xs border-[0.5px] bg-transparent items-center">
@@ -37,7 +59,7 @@ const DateSelector: React.FC<DateSelectorProps> = ({
               type="date"
               value={selectedDate}
               onChange={handleDateChange}
-              className="appearance-none"
+              className="text-[14px]"
             />
             <IoIosArrowDown />
           </div>
@@ -56,6 +78,7 @@ const DateSelector: React.FC<DateSelectorProps> = ({
               type="date"
               value={selectedReturnDate}
               onChange={handleDateChange}
+              className="text-[14px]"
             />
             <IoIosArrowDown />
           </div>

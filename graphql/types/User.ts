@@ -18,6 +18,9 @@ builder.prismaObject('User', {
     verified: t.exposeBoolean('verified'),
     cars: t.relation('cars'),
     trips: t.relation('trips'),
+    createdAt: t.expose("createdAt", {
+      type: "Date",
+  }),
   })
 })
 

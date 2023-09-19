@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import React from "react";
 import { FaStar, FaMedal } from "react-icons/fa";
 
@@ -14,10 +15,15 @@ interface PageProps {
 }
 
 const Host: React.FC<PageProps> = ({ host }) => {
-  console.log(host);
+  const date = new Date(host.createdAt);
+  const month = date.toLocaleDateString("en-US", { month: "long" });
+  const year = date.getFullYear();
+
+  const monthYear = `${month} ${year}`;
+
   return (
     <div className="flex flex-col text-black mx-4 mt-6">
-      <div className="flex justify-start text-xs font-bold font-sans">
+      <div className="flex justify-start text-lg font-bold font-sans">
         HOSTED BY
       </div>
       <div className="flex flex-row">
@@ -36,7 +42,7 @@ const Host: React.FC<PageProps> = ({ host }) => {
         </div>
 
         <div className="flex flex-col font-sans">
-          <div className="font-bold mb-2">
+          <div className="font-bold mb-2 text-xl">
             {host.firstName} {host.lastName}
           </div>
           {host.allStar ? (
@@ -45,10 +51,10 @@ const Host: React.FC<PageProps> = ({ host }) => {
               <div className="text-xs">All-Star Host</div>
             </div>
           ) : null}
-          <div className="">
-            {host.totalTrips} Trips - Joined {}
+          <div className="text-[15px]">
+            {host.totalTrips} Trips - Joined {monthYear}
           </div>
-          <div className="text-xs color-gray mt-[3px]">
+          <div className="text-xs color-gray mt-[3px] text-[#787879]">
             Typically responds in 5 minutes
           </div>
         </div>

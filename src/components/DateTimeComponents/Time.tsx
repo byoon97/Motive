@@ -2,7 +2,7 @@ import React from "react";
 
 export default function TimeSelector() {
   return (
-    <div className="rounded-lg text-xs font-Helvetica Neue">
+    <div className="rounded-lg font-sans text-[14px]">
       <div className="flex">
         <select
           name="hours"

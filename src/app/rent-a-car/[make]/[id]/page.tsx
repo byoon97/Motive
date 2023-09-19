@@ -6,6 +6,9 @@ import { useParams } from "next/navigation";
 import Carousel from "@/components/CarViewComponents/Carousel";
 import Content from "@/components/CarViewComponents/Content";
 import Host from "@/components/CarViewComponents/Host";
+import Reviews from "@/components/CarViewComponents/Reviews";
+import { useGlobalContext } from "@/app/context/store";
+import FooterSection from "@/components/CarViewComponents/FooterSection";
 
 const GET_CAR_QUERY = gql`
   query GetCarByID($id: Int!) {
@@ -24,6 +27,7 @@ const GET_CAR_QUERY = gql`
         allStar
         rating
         totalTrips
+        createdAt
       }
       trips {
         rating
@@ -31,6 +35,7 @@ const GET_CAR_QUERY = gql`
         endDate
         user {
           firstName
+          image
         }
       }
     }
@@ -54,13 +59,16 @@ interface Car {
     rating: number;
     totalTrips: number;
   };
-  trips: {
-    rating: number;
-    review: string;
-    endDate: Date;
-    user: {
-      firstName: string;
-    };
+  trips: Trip[];
+}
+
+interface Trip {
+  rating: number;
+  review: string;
+  endDate: Date;
+  user: {
+    firstName: string;
+    image: string;
   };
 }
 
@@ -70,6 +78,7 @@ const Page: React.FC = () => {
   const { loading, error, data } = useQuery(GET_CAR_QUERY, {
     variables: { id: Number(params.id) }, // Replace with the desired car make
   });
+  const { daysRenting } = useGlobalContext();
 
   React.useEffect(() => {
     if (!loading) setCar(data.getCarByID);
@@ -82,6 +91,8 @@ const Page: React.FC = () => {
       <Carousel images={car.image} />
       <Content details={(({ image, owner, trips, ...o }) => o)(car)} />
       <Host host={car.owner} />
+      <Reviews trips={car.trips} />
+      <FooterSection ppd={car.ppd} daysRenting={daysRenting} />
     </div>
   ) : (
     <div>loading</div>
