@@ -9,6 +9,8 @@ import Host from "@/components/CarViewComponents/Host";
 import Reviews from "@/components/CarViewComponents/Reviews";
 import { useGlobalContext } from "@/app/context/store";
 import FooterSection from "@/components/CarViewComponents/FooterSection";
+import Map from "@/components/CarViewComponents/Map";
+import { useLoadScript } from "@react-google-maps/api";
 
 const GET_CAR_QUERY = gql`
   query GetCarByID($id: Int!) {
@@ -80,11 +82,37 @@ const Page: React.FC = () => {
   });
   const { daysRenting } = useGlobalContext();
 
+  const { isLoaded } = useLoadScript({
+    googleMapsApiKey: process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY || "",
+  });
+
+  const [cords, setCords] = React.useState<{ lat: number; lng: number }>({
+    lat: 0,
+    lng: 0,
+  });
+
   React.useEffect(() => {
     if (!loading) setCar(data.getCarByID);
+    if (car) {
+      const address = car.address;
+      const geocoder = new google.maps.Geocoder();
+      geocoder.geocode({ address }, (results, status) => {
+        if (
+          status === "OK" &&
+          results &&
+          results.length > 0 &&
+          results[0]?.geometry?.location
+        ) {
+          const { lat, lng } = results[0].geometry.location;
+          setCords({ lat: Number(lat()), lng: Number(lng()) });
+        } else {
+          console.error("Geocoding failed or no results found.");
+        }
+      });
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    console.log(error, loading, data, params);
-  }, [loading, data]);
+    console.log(isLoaded);
+  }, [loading, data, car]);
 
   return car ? (
     <div id="Container" className="flex flex-col pt-[0.8%]">
@@ -93,6 +121,11 @@ const Page: React.FC = () => {
       <Host host={car.owner} />
       <Reviews trips={car.trips} />
       <FooterSection ppd={car.ppd} daysRenting={daysRenting} />
+      {isLoaded && (
+        <div className="mx-2 rounded-lg mt-10">
+          <Map cords={cords} address={car.address} />
+        </div>
+      )}
     </div>
   ) : (
     <div>loading</div>

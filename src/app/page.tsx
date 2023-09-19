@@ -8,6 +8,7 @@ import FAQ from "@/components/LandingPage/FAQ";
 //https://www.prisma.io/nextjs
 
 export default function Home() {
+
   return (
     <div className="h-screen bg-white overflow-x-hidden">
       <Banner />

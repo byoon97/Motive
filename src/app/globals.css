@@ -9,9 +9,11 @@
   --background-end-rgb: 255, 255, 255;
 }
 
-.gradient-bg {
-  background-image: linear-gradient(to top, #FFFFFF, rgba(255, 255, 255, 0));
+.map-container {
+  width: 100%;
+  height: 100%;
 }
+
 input::-webkit-calendar-picker-indicator {
   display: none;
 }
