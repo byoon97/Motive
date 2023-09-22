@@ -27,11 +27,11 @@ const Carousel: React.FC<CarouselProps> = ({ images }) => {
       >
         {images.map((image, index) => (
           <SwiperSlide key={index}>
-            <div className="relative w-full h-[300px] max-h-[700px]">
+            <div className="relative w-full md:max-h-[620px] lg:max-h-[820px]">
               <img
                 src={image}
                 alt={`Slide ${index + 1}`}
-                className="object-fill w-full h-fit"
+                className="w-full h-full object-contain"
               />
               <div className="hover:bg-sky-400 absolute cursor-pointer top-3 right-3 m-2 w-8 h-8 bg-stone-50 rounded-[4px] flex items-center justify-center shadow-md">
                 <GrFavorite />

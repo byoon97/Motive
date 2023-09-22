@@ -45,19 +45,7 @@ const Content: React.FC<CarProps> = ({ details: d }) => {
   }, []);
 
   return (
-    <div className="text-black mt-[5%] mx-[2.5%]">
-      <div id="HeaderContainer" className="flex flex-col mb-4">
-        <div className=" font-bold font-sans text-base mb-1">
-          {d.make} {d.model}
-        </div>
-        <div className="flex flex-row text-sm items-center">
-          <div>{d.rating}</div>
-          <div className="text-[#593CFB] mr-1.5 flex items-center pb-[0.5%]">
-            <FaStar />
-          </div>
-          <div className="font-sans font-thin">({d.totalTrips} trips)</div>
-        </div>
-      </div>
+    <div className="text-black mt-[5%]">
       <DateSelector
         selectedDate={selectedDate}
         selectedReturnDate={selectedReturnDate}

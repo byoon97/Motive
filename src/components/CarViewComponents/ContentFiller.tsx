@@ -23,6 +23,10 @@ const ContentFillter: React.FC<PageProps> = ({ address }) => {
             $28
           </div>
         </div>
+
+        <button className="mt-4 font-sans font-semibold tracking-wide leading-6 border rounded-lg box-border cursor-pointer max-w-full outline-none overflow-hidden relative truncate whitespace-no-wrap transition transform duration-150 border-1 border-solid bg-[#593CFB] text-white  text-base py-2 px-4 min-h-12">
+          <span className="relative block my-0 mx-[-4px]">Continue</span>
+        </button>
       </div>
       <div className="w-full border-b-[0.25px] mt-6 align-center"></div>
       <div className="mt-6 flex flex-row">

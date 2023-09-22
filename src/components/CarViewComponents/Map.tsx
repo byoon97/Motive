@@ -39,7 +39,7 @@ const Map: React.FC<PageProps> = ({ address, cords }) => {
     scrollwheel: false, // Disable scrolling to zoom
   };
   return (
-    <div className="w-full h-[300px] flex flex-col border-[1px] shadow-lg rounded-lg">
+    <div className="w-full h-[300px] md:h-[500px] mt-12 flex flex-col border-[1px] shadow-lg rounded-lg">
       <GoogleMap
         zoom={12}
         center={cords}

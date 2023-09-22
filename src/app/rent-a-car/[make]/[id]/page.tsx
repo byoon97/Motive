@@ -11,6 +11,7 @@ import { useGlobalContext } from "@/app/context/store";
 import FooterSection from "@/components/CarViewComponents/FooterSection";
 import Map from "@/components/CarViewComponents/Map";
 import { useLoadScript } from "@react-google-maps/api";
+import Header from "@/components/CarViewComponents/Header";
 
 const GET_CAR_QUERY = gql`
   query GetCarByID($id: Int!) {
@@ -115,17 +116,53 @@ const Page: React.FC = () => {
   }, [loading, data, car]);
 
   return car ? (
-    <div id="Container" className="flex flex-col pt-[0.8%]">
+    <div id="Container" className="flex flex-col pt-[0.8%] text-black">
       <Carousel images={car.image} />
-      <Content details={(({ image, owner, trips, ...o }) => o)(car)} />
-      <Host host={car.owner} />
-      <Reviews trips={car.trips} />
-      <FooterSection ppd={car.ppd} daysRenting={daysRenting} />
-      {isLoaded && (
-        <div className="mx-2 rounded-lg mt-10">
-          <Map cords={cords} address={car.address} />
+      <div className="mx-4 lg:mx-[8%]">
+        {/* MOBILE VIEW */}
+        <div className="flex flex-col lg:hidden">
+          <Header
+            trips={car.totalTrips}
+            model={car.model}
+            make={car.make}
+            rating={car.rating}
+          />
+          <Content details={(({ image, owner, trips, ...o }) => o)(car)} />
+          <Host host={car.owner} />
         </div>
-      )}
+
+        {/* LARGE VIEW */}
+        <div className="hidden lg:flex lg:flex-row lg:justify-center lg:mt-8">
+          <div>
+            <Header
+              trips={car.totalTrips}
+              model={car.model}
+              make={car.make}
+              rating={car.rating}
+            />
+            <Host host={car.owner} />
+            <Reviews trips={car.trips} />
+          </div>
+          <div className="lg:w-[320px] flex flex-col mx-[2.5%] lg:mt-8">
+            <div className="flex flex-col font-sans text-left text-black">
+              <div className="font-bold text-sm">
+                <span className="line-through mr-1 text-[#9B9B9B] font-thin">
+                  ${car.ppd + 15}
+                </span>
+                ${car.ppd}/day
+              </div>
+              <div className="underline text-gray-500">
+                ${daysRenting * car.ppd} est. total
+              </div>
+              <div className="w-full border-b-[0.25px] mt-6"></div>
+            </div>
+            <Content details={(({ image, owner, trips, ...o }) => o)(car)} />
+          </div>
+        </div>
+
+        {isLoaded && <Map cords={cords} address={car.address} />}
+        <FooterSection ppd={car.ppd} daysRenting={daysRenting} />
+      </div>
     </div>
   ) : (
     <div>loading</div>
