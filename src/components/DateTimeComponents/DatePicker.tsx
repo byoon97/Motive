@@ -23,7 +23,6 @@ const DatePicker: React.FC<DatePickerProps> = ({ date }) => {
           onChange={handleDateChange}
         />
       </div>
-      <TimeSelector />
     </div>
   );
 };
