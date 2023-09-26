@@ -1,0 +1,3 @@
+-- AlterTable
+ALTER TABLE "User" ADD COLUMN     "allStar" BOOLEAN NOT NULL DEFAULT false,
+ADD COLUMN     "rating" INTEGER NOT NULL DEFAULT 0;

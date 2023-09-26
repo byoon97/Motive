@@ -2,7 +2,7 @@ import React from "react";
 
 function Footer() {
   return (
-    <div className="w-screen flex flex-col justify-center items-center text-black bg-[#F4F4F4] mt-16">
+    <div className="w-screen flex flex-col justify-center items-center text-black bg-[#F4F4F4] mt-16 ">
       <div className="text-xs text-start max-w-[940px] m-6 py-4">
         <div className="">
           * Any personal insurance you may have that covers damage to the host’s

@@ -4,7 +4,7 @@ import React, { useRef, RefObject, useState, useEffect } from "react";
 import { gql, useQuery } from "@apollo/client";
 import type { Car } from "@prisma/client";
 import Link from "next/link";
-import MakeCard from "./MakeCard";
+import MakeCard from "./ModelCard";
 
 interface Data {
   make: string;
@@ -12,6 +12,7 @@ interface Data {
     {
       id: number;
       totalTrips: number;
+      make: string;
       model: string;
       rating: number;
       ppd: number;
@@ -76,8 +77,7 @@ const MakeCarousel: React.FC<Data> = ({ make, cars }) => {
             <div key={car.id} className="flex-shrink-0 mx-2 w-[360px]">
               <Link
                 href={{
-                  pathname: `/rent-a-car/${car.id}`,
-                  query: { keyword: car.model },
+                  pathname: `/rent-a-car/${make}/${car.id}`,
                 }}
               >
                 <MakeCard car={car} />

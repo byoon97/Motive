@@ -1,7 +1,7 @@
 "use client";
 import Banner from "@/components/MakePage/Banner";
 import Content from "@/components/MakePage/Content";
-import MakeCarousel from "@/components/MakePage/MakeCarousel/Carousel";
+import MakeCarousel from "@/components/MakePage/ModelCarousel/Carousel";
 import { gql, useQuery } from "@apollo/client";
 import { useParams } from "next/navigation";
 import React, { useEffect, useState } from "react";
