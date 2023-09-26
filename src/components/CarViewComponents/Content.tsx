@@ -15,7 +15,7 @@ interface CarProps {
 
 const Content: React.FC<CarProps> = ({ details: d }) => {
   return (
-    <div className="text-black mt-[5%]">
+    <div className="text-black mt-4">
       <DateSelector />
       <div className="w-full border-b-[0.25px] mt-6"></div>
       <ContentFillter address={d.address} />

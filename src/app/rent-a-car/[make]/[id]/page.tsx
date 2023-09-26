@@ -132,7 +132,7 @@ const Page: React.FC = () => {
         </div>
 
         {/* LARGE VIEW */}
-        <div className="hidden lg:flex lg:flex-row lg:justify-center lg:mt-8">
+        <div className="hidden md:flex md:flex-row md:justify-center">
           <div>
             <Header
               trips={car.totalTrips}
@@ -143,7 +143,7 @@ const Page: React.FC = () => {
             <Host host={car.owner} />
             <Reviews trips={car.trips} />
           </div>
-          <div className="lg:w-[320px] flex flex-col mx-[2.5%] lg:mt-8">
+          <div className="md:w-[320px] flex flex-col mx-[2.5%] md:mt-8">
             <div className="flex flex-col font-sans text-left text-black">
               <div className="font-bold text-sm">
                 <span className="line-through mr-1 text-[#9B9B9B] font-thin">

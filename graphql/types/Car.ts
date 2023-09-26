@@ -17,6 +17,10 @@ builder.prismaObject('Car', {
       type: ['String'],
       resolve: (root) => root.image,
     }),
+    bookedDates: t.field({
+      type: ['Date'],
+      resolve: (root) => root.bookedDates
+    })
   })
 })
 

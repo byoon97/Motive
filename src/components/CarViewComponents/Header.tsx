@@ -10,7 +10,10 @@ interface PageProps {
 
 const Header: React.FC<PageProps> = ({ make, model, rating, trips }) => {
   return (
-    <div id="HeaderContainer" className="flex flex-col mt-8 mb-2 lg:mx-4">
+    <div
+      id="HeaderContainer"
+      className="flex flex-col mt-8 mb-2 lg:mx-4 lg:mt-12"
+    >
       <div className=" font-bold font-sans text-3xl mb-1 lg:text-4xl">
         {make} {model}
       </div>

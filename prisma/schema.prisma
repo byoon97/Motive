@@ -43,6 +43,7 @@ model Car {
   rating     Int
   image      String[]
   ownerId    Int
+  bookedDates DateTime[]
   ppd        Int      @default(0)
   owner      User     @relation(fields: [ownerId], references: [id])
   trips      Trip[]

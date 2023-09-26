@@ -25,7 +25,7 @@ const FooterSection: React.FC<PageProps> = ({ daysRenting, ppd }) => {
             </div>
           </div>
 
-          <button className="font-sans w-[118px] font-semibold tracking-wide leading-6 border rounded-lg box-border cursor-pointer max-w-full outline-none overflow-hidden relative truncate whitespace-no-wrap transition transform duration-150 border-1 border-solid bg-[#593CFB] text-white  text-base py-2 px-4 min-h-12">
+          <button className=" font-sans w-[118px] font-semibold tracking-wide leading-6 border rounded-lg box-border cursor-pointer max-w-full outline-none overflow-hidden relative truncate whitespace-no-wrap transition transform duration-150 border-1 border-solid bg-[#593CFB] text-white  text-base py-2 px-4 min-h-12">
             <span className="relative block my-0 mx-[-4px]">Continue</span>
           </button>
         </div>
