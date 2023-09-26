@@ -120,7 +120,7 @@ const Page: React.FC = () => {
       <Carousel images={car.image} />
       <div className="mx-4 lg:mx-[8%]">
         {/* MOBILE VIEW */}
-        <div className="flex flex-col lg:hidden">
+        <div className="flex flex-col md:hidden">
           <Header
             trips={car.totalTrips}
             model={car.model}
@@ -129,9 +129,10 @@ const Page: React.FC = () => {
           />
           <Content details={(({ image, owner, trips, ...o }) => o)(car)} />
           <Host host={car.owner} />
+          <Reviews trips={car.trips} />
         </div>
 
-        {/* LARGE VIEW */}
+        {/* MEDIUM VIEW */}
         <div className="hidden md:flex md:flex-row md:justify-center">
           <div>
             <Header

@@ -59,7 +59,7 @@ const DateSelector: React.FC = () => {
       <div className="flex flex-col justify-start cursor-pointer mb-4">
         <div className="text-[#593CFB] font-light font-sans">Trip Start</div>
         <div className="flex flex-row h-[33px] text-xs border-[0.5px] bg-transparent items-center">
-          <div className="hover:border-[#593CFB] border relative flex flex-row justify-between items-center h-full w-3/4 px-2">
+          <div className="hover:border-[#593CFB] border relative flex flex-row justify-between items-center h-full w-3/5 px-2">
             <DatePicker
               readOnly
               minDate={selectedDate}
@@ -80,7 +80,7 @@ const DateSelector: React.FC = () => {
             />
           </div>
 
-          <div className="hover:border-[#593CFB] border flex flex-row justify-evenly items-center h-full w-1/4 p-2">
+          <div className="hover:border-[#593CFB] border flex flex-row justify-evenly items-center h-full w-2/5 p-2">
             <TimeSelector onChange={setPickUpTime} />
           </div>
         </div>
@@ -88,7 +88,7 @@ const DateSelector: React.FC = () => {
       <div className="flex flex-col justify-start cursor-pointer">
         <div className="text-[#593CFB] font-light font-sans">Trip End</div>
         <div className="flex flex-row h-[33px] text-xs border-[0.5px] bg-transparent items-center">
-          <div className="hover:border-[#593CFB] border relative flex flex-row justify-between items-center h-full w-3/4 px-2">
+          <div className="hover:border-[#593CFB] border relative flex flex-row justify-between items-center h-full w-3/5 px-2">
             <DatePicker
               readOnly
               selected={selectedReturnDate}
@@ -110,7 +110,7 @@ const DateSelector: React.FC = () => {
             />
           </div>
 
-          <div className="hover:border-[#593CFB] border flex flex-row justify-evenly items-center h-full w-1/4 p-2">
+          <div className="hover:border-[#593CFB] border flex flex-row justify-evenly items-center h-full w-2/5 p-2">
             <TimeSelector onChange={setReturnTime} />
           </div>
         </div>
