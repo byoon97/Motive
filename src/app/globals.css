@@ -14,6 +14,13 @@
   height: 100%;
 }
 
+.react-datepicker__input-container input {
+  border: none;
+  /* Remove the border */
+  outline: none;
+  /* Remove the outline */
+  /* Add any other styling as needed */
+}
 input::-webkit-calendar-picker-indicator {
   display: none;
 }

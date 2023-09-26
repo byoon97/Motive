@@ -116,7 +116,7 @@ const Page: React.FC = () => {
   }, [loading, data, car]);
 
   return car ? (
-    <div id="Container" className="flex flex-col pt-[0.8%] text-black">
+    <div id="Container" className="flex flex-col text-black">
       <Carousel images={car.image} />
       <div className="mx-4 lg:mx-[8%]">
         {/* MOBILE VIEW */}

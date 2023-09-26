@@ -2,35 +2,40 @@ import React from "react";
 import TimeSelector from "../DateTimeComponents/Time";
 import { IoIosArrowDown } from "react-icons/io";
 import { useGlobalContext } from "@/app/context/store";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 
-interface DateSelectorProps {
-  selectedDate: string;
-  selectedReturnDate: string;
-  setSelectedDate: React.Dispatch<React.SetStateAction<string>>;
-  setSelectedReturnDate: React.Dispatch<React.SetStateAction<string>>;
-}
+const DateSelector: React.FC = () => {
+  const {
+    setSelectedDate,
+    selectedDate,
+    setSelectedReturnDate,
+    selectedReturnDate,
+    setDaysRenting,
+    setPickUpTime,
+    setReturnTime,
+  } = useGlobalContext();
 
-const DateSelector: React.FC<DateSelectorProps> = ({
-  selectedDate,
-  selectedReturnDate,
-  setSelectedDate,
-  setSelectedReturnDate,
-}) => {
-  const handleDateChange = (
-    e: React.ChangeEvent<HTMLInputElement>,
-    isReturnDate: boolean = false
-  ) => {
-    const { value } = e.target;
-    if (isReturnDate) {
-      setSelectedReturnDate(value);
-    } else {
-      setSelectedDate(value);
-    }
+  const [isDatePickerVisible, setDatePickerVisible] = React.useState(false);
+  const [isReturnDatePickerVisible, setReturnDatePickerVisible] =
+    React.useState(false);
+
+  const toggleDatePicker = () => {
+    setDatePickerVisible(!isDatePickerVisible);
+  };
+  const toggleReturnDatePicker = () => {
+    setReturnDatePickerVisible(!isReturnDatePickerVisible);
   };
 
-  const { setDaysRenting } = useGlobalContext();
+  const handleDateChange = (date: Date) => {
+    setSelectedDate(date);
+    // Calculate the date 3 days from the selected date
+    const threeDaysLater = new Date(date);
+    threeDaysLater.setDate(threeDaysLater.getDate() + 3);
+    setSelectedReturnDate(threeDaysLater);
+  };
 
-  function calculateDateDifference(startDateStr: string, endDateStr: string) {
+  function calculateDateDifference(startDateStr: Date, endDateStr: Date) {
     // Convert the input date strings to Date objects
     const startDate = new Date(startDateStr);
     const endDate = new Date(endDateStr);
@@ -54,38 +59,60 @@ const DateSelector: React.FC<DateSelectorProps> = ({
       <div className="flex flex-col justify-start cursor-pointer mb-4">
         <div className="text-[#593CFB] font-light font-sans">Trip Start</div>
         <div className="flex flex-row h-[33px] text-xs border-[0.5px] bg-transparent items-center">
-          <div className="flex flex-row justify-between items-center h-full w-3/4 px-2">
-            <input
-              type="date"
-              value={selectedDate}
+          <div className="hover:border-[#593CFB] border-[0.15px] relative flex flex-row justify-between items-center h-full w-3/4 px-2">
+            <DatePicker
+              readOnly
+              minDate={selectedDate}
+              selected={selectedDate}
               onChange={handleDateChange}
               className="text-[14px]"
+              open={isDatePickerVisible} // Control calendar visibility
+              onClickOutside={() => setDatePickerVisible(false)} // Close calendar when clicking outside
             />
-            <IoIosArrowDown />
+            <IoIosArrowDown
+              onClick={toggleDatePicker}
+              style={{
+                position: "absolute",
+                right: "10px",
+                top: "50%",
+                transform: "translateY(-50%)",
+                cursor: "pointer",
+              }}
+            />
           </div>
 
-          <div className="flex flex-row justify-evenly items-center h-full w-1/4 border-l-[1px]">
-            <TimeSelector />
-            <IoIosArrowDown />
+          <div className="hover:border-[#593CFB] border-[0.15px] flex flex-row justify-evenly items-center h-full w-1/4 border-l-[1px]">
+            <TimeSelector onChange={setPickUpTime} />
           </div>
         </div>
       </div>
       <div className="flex flex-col justify-start cursor-pointer">
         <div className="text-[#593CFB] font-light font-sans">Trip End</div>
         <div className="flex flex-row h-[33px] text-xs border-[0.5px] bg-transparent items-center">
-          <div className="flex flex-row justify-between items-center h-full w-3/4 px-2">
-            <input
-              type="date"
-              value={selectedReturnDate}
-              onChange={handleDateChange}
+          <div className="hover:border-[#593CFB] border-[0.15px] relative flex flex-row justify-between items-center h-full w-3/4 px-2">
+            <DatePicker
+              readOnly
+              selected={selectedReturnDate}
+              onChange={(date) => {
+                setSelectedReturnDate(date as Date),
+                  setSelectedReturnDate(date as Date);
+              }}
               className="text-[14px]"
             />
-            <IoIosArrowDown />
+            <IoIosArrowDown
+              onClick={toggleReturnDatePicker}
+              style={{
+                position: "absolute",
+                right: "10px",
+                top: "50%",
+                transform: "translateY(-50%)",
+                cursor: "pointer",
+              }}
+            />
           </div>
 
-          <div className="flex flex-row justify-evenly items-center h-full w-1/4 border-l-[1px]">
-            <TimeSelector />
-            <IoIosArrowDown />
+          <div className="hover:border-[#593CFB] border-[0.15px] flex flex-row justify-evenly items-center h-full w-1/4 border-l-[1px]">
+            <TimeSelector onChange={setReturnTime} />
           </div>
         </div>
       </div>

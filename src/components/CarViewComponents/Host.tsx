@@ -65,8 +65,8 @@ const Host: React.FC<PageProps> = ({ host }) => {
           <FaMedal className="text-[#593CFB] mr-2" size={"2em"} />
           <div className="flex flex-col font-sm font-sans">
             <div className="text-[15px]">
-              All-Star Hosts like Stephanie Jen are the top-rated and most
-              experienced hosts on Turo.
+              All-Star Hosts like {host.firstName} {host.lastName} are the
+              top-rated and most experienced hosts on Motive.
             </div>
             <div className="font-bold text-[#593CFB]">Learn more</div>
           </div>
