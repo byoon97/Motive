@@ -77,7 +77,7 @@ const MakeCarousel: React.FC<Data> = ({ make, cars }) => {
             <div key={car.id} className="flex-shrink-0 mx-2 w-[360px]">
               <Link
                 href={{
-                  pathname: `/rent-a-car/${make}/${car.id}`,
+                  pathname: `/rent-a-car/${make}/${car.model}/${car.id}`,
                 }}
               >
                 <MakeCard car={car} />

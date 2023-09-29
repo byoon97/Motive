@@ -162,7 +162,13 @@ const Page: React.FC = () => {
         </div>
 
         {isLoaded && <Map cords={cords} address={car.address} />}
-        <FooterSection ppd={car.ppd} daysRenting={daysRenting} />
+        <FooterSection
+          ppd={car.ppd}
+          daysRenting={daysRenting}
+          make={car.make}
+          model={car.model}
+          id={Number(params.id)}
+        />
       </div>
     </div>
   ) : (

@@ -2,12 +2,17 @@ import React from "react";
 import { IoIosArrowDown } from "react-icons/io";
 import { FiThumbsUp } from "react-icons/fi";
 import { AiOutlineQuestionCircle } from "react-icons/ai";
+import Link from "next/link";
+import { useParams } from "next/navigation";
 
 interface PageProps {
   address: string;
+  make: string;
+  model: string;
 }
 
-const ContentFillter: React.FC<PageProps> = ({ address }) => {
+const ContentFillter: React.FC<PageProps> = ({ address, make, model }) => {
+  const { id } = useParams();
   return (
     <>
       {" "}
@@ -25,7 +30,14 @@ const ContentFillter: React.FC<PageProps> = ({ address }) => {
         </div>
 
         <button className="mt-4 font-sans font-semibold tracking-wide leading-6 border rounded-lg box-border cursor-pointer max-w-full outline-none overflow-hidden relative truncate whitespace-no-wrap transition transform duration-150 border-1 border-solid bg-[#593CFB] text-white  text-base py-2 px-4 min-h-12">
-          <span className="relative block my-0 mx-[-4px]">Continue</span>
+          <Link
+            href={{
+              pathname: `/rent-a-car/${make}/${model}/${id}/checkout`,
+            }}
+            className="cursor-pointer w-full"
+          >
+            <span className="relative block my-0 mx-[-4px]">Continue</span>
+          </Link>
         </button>
       </div>
       <div className="w-full border-b-[0.25px] mt-6 align-center"></div>

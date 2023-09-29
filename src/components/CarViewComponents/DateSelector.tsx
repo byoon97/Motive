@@ -59,7 +59,7 @@ const DateSelector: React.FC = () => {
       <div className="flex flex-col justify-start cursor-pointer mb-4">
         <div className="text-[#593CFB] font-light font-sans">Trip Start</div>
         <div className="flex flex-row h-[33px] text-xs border-[0.5px] bg-transparent items-center">
-          <div className="hover:border-[#593CFB] border relative flex flex-row justify-between items-center h-full w-3/5 px-2">
+          <div className="hover:border-[#593CFB] border relative flex flex-row justify-between items-center h-full w-3/5 pt-1 px-2">
             <DatePicker
               readOnly
               minDate={selectedDate}
@@ -88,7 +88,7 @@ const DateSelector: React.FC = () => {
       <div className="flex flex-col justify-start cursor-pointer">
         <div className="text-[#593CFB] font-light font-sans">Trip End</div>
         <div className="flex flex-row h-[33px] text-xs border-[0.5px] bg-transparent items-center">
-          <div className="hover:border-[#593CFB] border relative flex flex-row justify-between items-center h-full w-3/5 px-2">
+          <div className="hover:border-[#593CFB] border relative flex flex-row justify-between items-center h-full w-3/5 pt-1 px-2">
             <DatePicker
               readOnly
               selected={selectedReturnDate}

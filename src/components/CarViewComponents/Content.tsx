@@ -18,7 +18,7 @@ const Content: React.FC<CarProps> = ({ details: d }) => {
     <div className="text-black mt-4">
       <DateSelector />
       <div className="w-full border-b-[0.25px] mt-6"></div>
-      <ContentFillter address={d.address} />
+      <ContentFillter address={d.address} make={d.make} model={d.model} />
       <div className="w-full border-b-[0.25px] mt-6"></div>
     </div>
   );
