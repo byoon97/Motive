@@ -4,6 +4,7 @@ import { IoIosArrowDown } from "react-icons/io";
 import { useGlobalContext } from "@/app/context/store";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import { parseISO } from "date-fns";
 
 const DateSelector: React.FC = () => {
   const {
@@ -81,7 +82,7 @@ const DateSelector: React.FC = () => {
           </div>
 
           <div className="hover:border-[#593CFB] border flex flex-row justify-evenly items-center h-full w-2/5 p-2">
-            <TimeSelector onChange={setPickUpTime} />
+            <TimeSelector onChange={setPickUpTime} type={"pickup"} />
           </div>
         </div>
       </div>
@@ -111,7 +112,7 @@ const DateSelector: React.FC = () => {
           </div>
 
           <div className="hover:border-[#593CFB] border flex flex-row justify-evenly items-center h-full w-2/5 p-2">
-            <TimeSelector onChange={setReturnTime} />
+            <TimeSelector onChange={setReturnTime} type={"return"} />
           </div>
         </div>
       </div>

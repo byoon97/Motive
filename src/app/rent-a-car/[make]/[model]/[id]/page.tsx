@@ -81,7 +81,7 @@ const Page: React.FC = () => {
   const { loading, error, data } = useQuery(GET_CAR_QUERY, {
     variables: { id: Number(params.id) }, // Replace with the desired car make
   });
-  const { daysRenting } = useGlobalContext();
+  const { daysRenting, setSelectedCar, selectedCar } = useGlobalContext();
 
   const { isLoaded } = useLoadScript({
     googleMapsApiKey: process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY || "",
@@ -93,7 +93,10 @@ const Page: React.FC = () => {
   });
 
   React.useEffect(() => {
-    if (!loading) setCar(data.getCarByID);
+    if (!loading) {
+      setCar(data.getCarByID);
+      setSelectedCar(data.getCarByID);
+    }
     if (car) {
       const address = car.address;
       const geocoder = new google.maps.Geocoder();
