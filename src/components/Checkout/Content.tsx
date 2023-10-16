@@ -7,7 +7,7 @@ const Content: React.FC = () => {
   return (
     <div className="mx-4 flex flex-col">
       {" "}
-      <div className="w-full border-b-[0.25px] mt-6"></div>
+      <div className="w-full border-b-[0.25px] mt-6 border-[#C7C7C7]"></div>
       <div className="flex flex-col my-6">
         <div className="font-bold font-sans">Meeting Location</div>
         <div className="flex flex-row">
@@ -18,7 +18,7 @@ const Content: React.FC = () => {
           <div className="font-sans font-light">{selectedCar?.address}</div>
         </div>
       </div>
-      <div className="w-full border-b-[0.25px]"></div>
+      <div className="w-full border-b-[0.25px] border-[#C7C7C7]"></div>
       <div className="flex flex-row mt-6 items-center">
         <FiThumbsUp className="mr-4 text-[#6E54FC]" />
         <div className="flex flex-col">

@@ -3,6 +3,7 @@ import React from "react";
 import Header from "@/components/Checkout/Header";
 import { useGlobalContext } from "@/app/context/store";
 import Content from "@/components/Checkout/Content";
+import Price from "@/components/Checkout/Price";
 
 const Checkout: React.FC = () => {
   const {
@@ -46,6 +47,7 @@ const Checkout: React.FC = () => {
     <div className="text-black flex flex-col">
       <Header />
       <Content />
+      <Price />
     </div>
   );
 };
