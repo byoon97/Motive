@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unescaped-entities */
 import React, { useEffect } from "react";
 import { useGlobalContext } from "@/app/context/store";
 
@@ -68,6 +69,15 @@ const Price: React.FC = () => {
         <div>Total Price</div>
         <div>${price.toFixed(2)}</div>
       </div>
+      <div className="w-full border-b-[0.25px] border-[#C7C7C7]"></div>
+      <div className="font-sans text-xs mt-4">
+        You'll be able to message {selectedCar?.owner.firstName} after checkout
+      </div>
+      <button className="bg-[#593cfb] border-[1px] text-white w-[131px] h-[34px] mt-4">
+        <div className="cursor-pointer font-sans font-bold text-center ">
+          Book this trip
+        </div>
+      </button>
     </div>
   );
 };
